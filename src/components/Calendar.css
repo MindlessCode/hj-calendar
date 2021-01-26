@@ -104,6 +104,9 @@ h1, .Months > i  {
 .prevDays {
     opacity: 35%;
 }
+.prevDays div {
+    color: white;
+}
 .dy, .dy > div {
     background: rgb(27, 27, 27);
     border-radius: 0.6rem;
