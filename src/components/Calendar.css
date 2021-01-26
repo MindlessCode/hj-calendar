@@ -93,10 +93,6 @@ h1, .Months > i  {
     text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
     transition: all .3s ease;
     animation: fadeIn ease 1s;
-    -webkit-animation: fadeIn ease 1s;
-    -moz-animation: fadeIn ease 1s;
-    -o-animation: fadeIn ease 1s;
-    -ms-animation: fadeIn ease 1s;
 }
 .DaysContainer {
     background:rgb(29, 29, 29);
