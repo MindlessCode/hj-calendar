@@ -1,0 +1,33 @@
+.taskContainer {
+    padding: 1.2rem;
+    height: 500px;
+    width: 350px;
+    background: rgb(68, 68, 68);
+    box-shadow: 0rem 0.3rem 0.7rem rgb(7, 7, 7);
+    border-radius: 0.6rem;
+}
+.task {
+    border-radius: 0.6rem;
+    background: rgb(255, 216, 157);
+    padding: 10px 20px;
+    align-content: center;
+    margin:  5px;
+    cursor: pointer;
+}
+h2 {
+    color:azure;
+    display:flex;
+    margin: 0.3rem;
+}
+.task h3 {
+    display: flex;
+    justify-content: space-between;
+}
+#FaTime {
+justify-items: right;
+}
+@media screen and (max-width: 1024px) {
+    .taskContainer {
+      margin: 1.6rem;   
+    }
+}
