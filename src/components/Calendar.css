@@ -102,10 +102,10 @@ h1, .Months > i  {
     padding: 1em;
 }
 .prevDays {
-    opacity: 35%;
+    opacity: 55%;
 }
 .prevDays div {
-    color: white;
+    color: black;
 }
 .dy, .dy > div {
     background: rgb(27, 27, 27);
