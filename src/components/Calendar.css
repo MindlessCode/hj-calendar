@@ -108,6 +108,7 @@ h1, .Months > i  {
     color: white;
 }
 .dy, .dy > div {
+    
     background: rgb(27, 27, 27);
     border-radius: 0.6rem;
 }
@@ -117,13 +118,13 @@ h1, .Months > i  {
     color: black;
     font-weight:bold;
 }
-.dy:hover {
+.dy:hover, .selected {
     border:0.1px solid rgb(182, 182, 182);
     cursor: pointer;
 }
 @media screen and (max-width: 1024px) {
     .conta {
-        overflow: hidden;
+        overflow-x: hidden;
     }
     .Cal {
         width: 100%;
@@ -143,7 +144,7 @@ h1, .Months > i  {
     .monthSelect{
         justify-items: center;
         display:grid;
-        grid-template-columns:repeat(12, calc(768px/9.5));
+        grid-template-columns:repeat(12, calc(768px/11));
         border-top-left-radius: 0.6rem;
         border-top-right-radius: 0.6rem;
         color:rgb(255, 216, 157);
