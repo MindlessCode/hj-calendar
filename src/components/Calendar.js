@@ -99,9 +99,8 @@ const Calendar = ({value, onChange}) => {
                 </div>
                 <div className="DaysContainer">
                     {calendar.map(week => <div key={week.toString()} className="Days">{
-                        week.map(day => <div key={day.toString()} className={(value.isSame(day, "day") && value.isSame(moment().getMonth, "month")) ? "selected" : "dy"} onClick={()=>showDate(day.year(), day.month(),day.date())}>
-                            {/* {console.log(day.month())}  */}
-                            <div className={(!(day.month() === value.month())) ? "prevDays" : ""} > {day.format("D").toString()} </div>
+                        week.map(day => <div key={day.toString()} className={(!(day.month() === value.month())) ? "prevDays" : "dy"} onClick={()=>showDate(day.year(), day.month(),day.date())}>
+                            <div className={(value.isSame(day, "day") && value.isSame(moment().getMonth, "month")) ? "selected" : ""}  > {day.format("D").toString()} </div>
                         </div>)
                     }
                     </div>)}
