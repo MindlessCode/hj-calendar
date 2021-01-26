@@ -23,7 +23,7 @@ const App = () => {
             />
                     <nav>
                         <div className="logo">
-                            <h4>HARRY</h4>
+                            <h4>HARRY J</h4>
                         </div>
                         <ul className="nav-links" ref={styleRef}>
                             <li>

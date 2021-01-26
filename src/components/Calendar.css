@@ -106,33 +106,22 @@ h1, .Months > i  {
     width: 7em;
     height: 7em;
     padding: 1em;
-    animation: fadeIn ease 1s;
-
 }
 .prevDays {
     opacity: 75%;
     border-radius: 0.6rem;
     background:rgb(51, 51, 51);
-    animation: fadeIn ease 1s;
-
 }
 .prevDays div {
     color: white;
-    animation: fadeIn ease 1s;
-
- 
 }
-@keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
+.prevDays div {
+    color: white;
 }
-
 .dy {
-    
     background:rgb(51, 51, 51);
     border-radius: 0.6rem;
 }
-
 .selected, .selected div {
     background:rgb(255, 216, 157);
     border-radius: 0.6rem;
@@ -162,6 +151,9 @@ h1, .Months > i  {
     .Cal2 > div > h1 {
         font-size: 12px;
     }
+    .DaysContainer {
+        overflow: hidden;
+    }
     .monthSelect{
         justify-items: center;
         display:grid;
@@ -175,6 +167,12 @@ h1, .Months > i  {
         overflow: hidden;
         width: 100%;
         font-size: 8px;
+    }
+    .Days > div {
+        overflow:hidden;
+        width: 100%;
+        height: 150%;
+        font-size: 12px;
     }
 }
 @media screen and (max-width: 860px) {
