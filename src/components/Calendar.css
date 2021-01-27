@@ -48,7 +48,7 @@
     border-radius: 0.6rem;
     margin:.2rem;
     font-size: 36px;
-    text-shadow: 0 0.3rem 0.5rem rgba(0,0,0,0.5);
+   
     text-transform: uppercase;
     background-color:rgb(255, 216, 157);
 }
@@ -104,7 +104,6 @@ h1, .Months > i  {
     padding: 1em;
 }
 .prevDays {
-    opacity:35%;
     border-radius: 0.6rem;
     background:rgb(51, 51, 51);
 }
@@ -117,6 +116,7 @@ h1, .Months > i  {
     border-radius: 0.6rem;
 }
 .selected, .selected div {
+    padding: 0.2rem;
     background:rgb(255, 216, 157);
     border-radius: 0.6rem;
     color: black;
@@ -145,7 +145,7 @@ h1, .Months > i  {
     .Cal2 > div > h1 {
         font-size: 12px;
     }
-    .DaysContainer {
+    .DaysContainer * {
         overflow: hidden;
     }
     .monthSelect{
@@ -210,6 +210,9 @@ h1, .Months > i  {
          height: 150%;
          font-size: 12px;
      }
+     .DaysContainer * {
+        overflow: hidden;
+    }
 }
 @media screen and (max-width: 512px) {
     .Cal {
@@ -241,6 +244,9 @@ h1, .Months > i  {
          margin: 0;
          font-size: 8px;
      }
+     .DaysContainer * {
+        overflow: hidden;
+    }
 }
 @media screen and (max-width: 376px) {
     * {
@@ -256,6 +262,9 @@ h1, .Months > i  {
         align-content: center;
         grid-template-columns: 115px 150px 115px;
         height: 100px;
+    }
+    .DaysContainer * {
+        overflow: hidden;
     }
     .monthSelect{
         display:grid;

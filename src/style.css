@@ -108,7 +108,6 @@ nav {
 }
 .nav-active {
     transform: translateX(0%);
-    opacity: 100%;
 }
 @media screen and (max-width: 512px) {
     *{
