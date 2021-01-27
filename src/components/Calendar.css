@@ -84,7 +84,7 @@ h1, .Months > i  {
     padding: 1.2rem;
     display: grid;
     grid-template-columns:repeat(7, 1fr);
-    grid-gap: 1.5rem;
+    gap: 1.5rem;
     border-radius: 0.6rem;
     background:rgb(29, 29, 29);
     color: white;
@@ -103,22 +103,17 @@ h1, .Months > i  {
     padding: 1em;
 }
 .prevDays {
-    position: relative;
     border-radius: 0.6rem;
     background:rgb(51, 51, 51);
 }
 .prevDays div {
-    position: relative;
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
 .dy {
-    position: relative;
+
     background:rgb(51, 51, 51);
     border-radius: 0.6rem;
-}
-.dy > div {
-    position: absolute;
 }
 .selected {
     position: relative;
@@ -136,13 +131,13 @@ h1, .Months > i  {
 @media screen and (max-width: 1024px) {
     .conta {
         overflow: hidden;
+        border-radius: 0.6rem;
     }
     .Cal {
         width: 100%;
     }
     .Cal2 {
         width: 100%;
-        align-items: center;
     }
     .Months{
         justify-content: center;
@@ -154,6 +149,9 @@ h1, .Months > i  {
     }
     .DaysContainer * {
         overflow: hidden;
+    }
+    .DaysContainer {
+        height: 100%;
     }
     .monthSelect{
         justify-items: center;
@@ -169,21 +167,19 @@ h1, .Months > i  {
         width: 100%;
         font-size: 8px;
     }
-    .Days > div {
+    .Days {
         overflow:hidden;
-        width: 100%;
-        height: 150%;
+       
         font-size: 12px;
     }
     .prevDays {
         height: 100%;
-        width: 150%;
+        width: 100%;
     }
 }
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 800px) {
     .conta {
         overflow: hidden;
-
     }
     .Cal {
         width: 100%;
@@ -199,6 +195,9 @@ h1, .Months > i  {
     }
     .Cal2 > div > h1 {
          font-size: 12px;
+    }
+    .Cal2 {
+        overflow: hidden;
     }
      .monthSelect{
          justify-items: center;
@@ -217,31 +216,40 @@ h1, .Months > i  {
          font-size: 10px;
      }
     .prevDays {
-        height: 80%;
+        height: 100%;
         width: 100%;
+    }
+    .Days {
+        gap: 0.5rem;
+        height: 100px;
+    }
+    .Days div {
+        
+        height: 70px;
+        width: 50px;
     }
      .DaysContainer * {
         overflow: hidden;
     }
-    .DaysContainer {
-        height: 600px;
+    .dy div {
+        height: 50%;
+        width: 100%;
     }
 }
 @media screen and (max-width: 512px) {
-    .Cal {
-        width: 100%;
-    }
-    .Cal2 {
-        width: 100%;
-        align-items: center;
+    .conta {
+        height: 700px;
     }
     .Months{
          justify-content: center;
          display: grid;
          grid-template-columns: repeat(3, 1fr);  
     }
-    .Cal2 > div > h1 {
+    .Cal2 div h1 {
          font-size: 12px;
+    }
+    .Cal2 {
+        overflow: hidden;
     }
      .monthSelect{
          justify-items: center;
@@ -254,26 +262,40 @@ h1, .Months > i  {
      .monthSelect > div {
          overflow: hidden;
          width: 100%;
-         margin: 0;
          font-size: 8px;
      }
-     .DaysContainer * {
-        overflow: hidden;
+     .Weeks {
+        grid-template-columns: repeat(7, 1fr);
+       gap: 0.2rem;
+       margin-bottom: 0;
+       
+     }
+     .DaysContainer {
+        height: 100;
+     }
+    .Days {
+        grid-template-columns: repeat(7, 1fr);
+        height: 70px;
+       
     }
-    .Days > div {
-        width: 200%;
-        height: 200%;
-        font-size: 5px;
+    .Days div  {
+        
+        height: 150%;
+        width: 100%;
     }
-    .dy {
-        width: 200%;
-        height: 200%;
+    .dy div {
+        height: 100%;
+        width: 100%;
     }
+    
 }
 @media screen and (max-width: 376px) {
     * {
         overflow: hidden;
         border-radius: 0.2rem;
+    }
+    .conta {
+        height: 620px;
     }
     .Cal, .Cal2 {
         width: 100%;
@@ -285,8 +307,9 @@ h1, .Months > i  {
         grid-template-columns: 115px 150px 115px;
         height: 100px;
     }
-    .DaysContainer * {
+    .DaysContainer {
         overflow: hidden;
+      
     }
     .monthSelect{
         display:grid;
@@ -306,9 +329,21 @@ h1, .Months > i  {
     .Weeks > div {
         font-size: 7px;
     }
-    .Days > div {
-        width: 200%;
-        height: 200%;
-        font-size: 5px;
+    .DaysContainer {
+        height: 100;
+     }
+    .Days {
+        grid-template-columns: repeat(7, 1fr);
+        height: 70px;
+       
+    }
+    .Days div  {
+        
+        height: 150%;
+        width: 100%;
+    }
+    .dy div {
+        height: 100%;
+        width: 100%;
     }
 }

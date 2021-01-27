@@ -59,6 +59,7 @@ nav {
     .wrapper {
         justify-items: center;
         grid-template-columns:repeat(1, 1fr);
+        gap: 2.5rem;
         padding: 0.6rem;
     }
 }
@@ -75,9 +76,6 @@ nav {
     }
     .nav-links {
         width: 60%;
-    }
-    nav {
-        width: 110%;
     }
 }
 @media screen and (max-width: 860px) {
