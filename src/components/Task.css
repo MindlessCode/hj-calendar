@@ -1,4 +1,5 @@
 .taskContainer {
+    position: relative;
     padding: 1.2rem;
     height: 500px;
     width: 350px;
@@ -23,8 +24,14 @@ h2 {
     display: flex;
     justify-content: space-between;
 }
-#FaTime {
-justify-items: right;
+.subBtn {
+    position: absolute;
+    margin: 1.6rem 0;
+    box-shadow: 0 0.3rem 0.5rem rgb(7, 7, 7);
+    width: 20%;
+    left:40%;
+    right: 40%;
+    bottom: 0;
 }
 @media screen and (max-width: 1024px) {
     .taskContainer {
