@@ -74,7 +74,8 @@ h1, .Months > i  {
     text-align: center;
 }
 .Weeks > div{
-    border-style:dashed;
+    border-style: groove;
+    border-color:rgb(27, 27, 27);
     border-radius: 0.6rem;
     background-color: rgb(255, 216, 157);
 }
@@ -86,12 +87,17 @@ h1, .Months > i  {
     grid-template-columns:repeat(7, 1fr);
     gap: 1.5rem;
     border-radius: 0.6rem;
-    background:rgb(29, 29, 29);
-    color: white;
+    color:rgb(255, 216, 157);
     text-align: left;
     text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-    transition: all .3s ease;
-    animation: fadeIn ease 1s;
+    
+}
+
+@keyframes colorChange {
+    0% {
+        background:rgb(29, 29, 29);
+    }
+
 }
 .DaysContainer {
     background:rgb(29, 29, 29);
@@ -101,13 +107,18 @@ h1, .Months > i  {
     width: 7em;
     height: 7em;
     padding: 1em;
+    border-style:groove;
+    border-color:seashell;
+}
+.Days > div:not(.prevDays){
+
+    animation: colorChange 1s ease-in forwards;
 }
 .prevDays {
     border-radius: 0.6rem;
-    background:rgb(51, 51, 51);
 }
 .prevDays div {
-    color: rgb(0, 0, 0);
+    color: rgb(155, 155, 155);
     text-decoration: none;
 }
 .dy {
@@ -293,6 +304,9 @@ h1, .Months > i  {
     * {
         overflow: hidden;
         border-radius: 0.2rem;
+    }
+    body {
+        overflow: hidden;
     }
     .conta {
         height: 620px;
