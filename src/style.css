@@ -36,7 +36,6 @@ nav {
     font-size: 20px;
 }
 .nav-links {
-    position: fixed;
     display: flex;
     justify-content: space-around;
     background:rgb(255, 216, 157);
