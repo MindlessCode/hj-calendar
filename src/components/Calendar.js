@@ -5,7 +5,7 @@ import Tasks from './Tasks.js';
 import './Calendar.css'
 
 
-const Calendar = ({value, onChange}) => {
+const Calendar = ({ value, onChange }) => {
     const [tasks, setTasks] = useState([
         {
             id: 1,
@@ -18,7 +18,7 @@ const Calendar = ({value, onChange}) => {
             id: 2,
             text: 'Homework',
             priority: 4,
-            exp:8,
+            exp: 8,
             sDate: 'test',
         },
         {
@@ -31,10 +31,10 @@ const Calendar = ({value, onChange}) => {
     ])
 
     const [startDate, setStartDate] = useState(
-        {sDate: ''}
+        { sDate: '' }
     )
     const [calendar, setCalendar] = useState([]);
-   
+
     useEffect(() => {
         setCalendar(buildCalendar(value));
     }, [value])
@@ -62,10 +62,10 @@ const Calendar = ({value, onChange}) => {
     function setMonthName(arg) {
         return value.clone().month(arg)
     }
-    const deleteTask =(id)=> {
-        setTasks(tasks.filter((task)=> task.id !== id))
+    const deleteTask = (id) => {
+        setTasks(tasks.filter((task) => task.id !== id))
     }
-    const showDate =(year,month, selectedDate)=> {
+    const showDate = (year, month, selectedDate) => {
         const currDate = [startDate];
         var day = moment([year, month, selectedDate]).month(month).format("YYYY-MM-DD")
         currDate.sDate = day.toString()
@@ -73,42 +73,42 @@ const Calendar = ({value, onChange}) => {
     }
     return (
         <div className="wrapper">
-        <div className="conta">
-            <div className="Cal">
-                <div className="monthSelect">
-                    {getMonthName().map(mons =>
-                        <div key={mons.toString()} className={value.isSame(value.clone().month(mons), "month") ? "selectedMonth" : ""} onClick={() => onChange(setMonthName(mons))}>
-                            {moment().month(mons).format("MMM")}
+            <div className="conta">
+                <div className="Cal">
+                    <div className="monthSelect">
+                        {getMonthName().map(mons =>
+                            <div key={mons.toString()} className={value.isSame(value.clone().month(mons), "month") ? "selectedMonth" : ""} onClick={() => onChange(setMonthName(mons))}>
+                                {moment().month(mons).format("MMM")}
+                            </div>)}
+                    </div>
+                </div>
+                <div className="Cal2">
+                    <div className="Months">
+                        <i className="fas fa-angle-left prev" onClick={() => onChange(prevMonth())}></i>
+                        <h1>{currMonthName()} {currYear()} </h1>
+                        <i className="fas fa-angle-right next" onClick={() => onChange(nextMonth())}></i>
+                    </div>
+                    <div className="Weeks">
+                        <div>SUN</div>
+                        <div>MON</div>
+                        <div>TUE</div>
+                        <div>WED</div>
+                        <div>THU</div>
+                        <div>FRI</div>
+                        <div>SAT</div>
+                    </div>
+                    <div className="DaysContainer">
+                        {calendar.map(week => <div key={week.toString()} className="Days">{
+                            week.map(day => <div key={day.toString()} className={(!(day.month() === value.month())) ? "prevDays" : "dy"} onClick={() => showDate(day.year(), day.month(), day.date())}>
+                                <div className={(value.isSame(day, "day") && value.isSame(moment().getMonth, "month")) ? "selected" : ""}  > {day.format("D").toString()} </div>
+                            </div>)
+                        }
                         </div>)}
+                    </div>
                 </div>
             </div>
-            <div className="Cal2">
-                <div className="Months">
-                    <i className="fas fa-angle-left prev" onClick={() => onChange(prevMonth())}></i>
-                    <h1>{currMonthName()} {currYear()} </h1>
-                    <i className="fas fa-angle-right next" onClick={() => onChange(nextMonth())}></i>
-                </div>
-                <div className="Weeks">
-                    <div>SUN</div>
-                    <div>MON</div>
-                    <div>TUE</div>
-                    <div>WED</div>
-                    <div>THU</div>
-                    <div>FRI</div>
-                    <div>SAT</div>
-                </div>
-                <div className="DaysContainer">
-                    {calendar.map(week => <div key={week.toString()} className="Days">{
-                        week.map(day => <div key={day.toString()} className={(!(day.month() === value.month())) ? "prevDays" : "dy"} onClick={()=>showDate(day.year(), day.month(),day.date())}>
-                            <div className={(value.isSame(day, "day") && value.isSame(moment().getMonth, "month")) ? "selected" : ""}  > {day.format("D").toString()} </div>
-                        </div>)
-                    }
-                    </div>)}
-                </div>
-            </div>
-        </div>
 
-        <Tasks tasks={tasks} startDate={startDate} onDelete={deleteTask}/>
+            <Tasks tasks={tasks} startDate={startDate} onDelete={deleteTask} />
         </div>
     )
 }

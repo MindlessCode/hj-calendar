@@ -104,7 +104,7 @@ nav {
         align-items: center;
         width: 50%;
         transform: translateX(100%);
-        transition: all 0.5s ease-in;
+        transition: transform 0.5s ease-in;
     }
     .burger {
         display: block;
@@ -119,6 +119,22 @@ nav {
     }
     .wrapper {
         gap: 10rem;
+    }
+    .nav-links{
+        position: absolute;
+        right: 0px;
+        height: 100%;
+        top: 3rem;
+        background:rgb(255, 216, 157);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+    .burger {
+        display: block;
     }
 }
 @media screen and (max-width: 376px) {
