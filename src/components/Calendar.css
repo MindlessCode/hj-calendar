@@ -95,7 +95,7 @@ h1, .Months > i  {
         background:rgb(29, 29, 29);
     }
     20% {
-        background:rgb(53, 53, 53);
+        background:rgb(29, 29, 29);
     }
 }
 .DaysContainer {
@@ -106,6 +106,7 @@ h1, .Months > i  {
     width: 7em;
     height: 7em;
     padding: 1em;
+    background:rgb(29, 29, 29);
     border-style:groove;
     border-color:seashell;
 }
