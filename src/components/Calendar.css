@@ -147,8 +147,6 @@ h1, .Months > i  {
     }
     .Cal {
         width: 100%;
-
-
     }
     .Cal2 {
         width: 100%;
@@ -193,6 +191,9 @@ h1, .Months > i  {
     }
 }
 @media screen and (max-width: 800px) {
+    body {
+        overflow-x: hidden;
+    }
     .conta {
         overflow: hidden;
     }
@@ -253,6 +254,9 @@ h1, .Months > i  {
     }
 }
 @media screen and (max-width: 512px) {
+    body {
+        overflow-x: hidden;
+    }
     .conta {
         height: 700px;
     }
