@@ -66,10 +66,10 @@ const Calendar = ({value, onChange}) => {
         setTasks(tasks.filter((task)=> task.id !== id))
     }
     const showDate =(year,month, selectedDate)=> {
-     const currDate = [startDate];
-     var day = moment([year, month, selectedDate]).month(month).format("YYYY-MM-DD")
-     currDate.sDate = day.toString()
-     setStartDate(currDate);
+        const currDate = [startDate];
+        var day = moment([year, month, selectedDate]).month(month).format("YYYY-MM-DD")
+        currDate.sDate = day.toString()
+        setStartDate(currDate);
     }
     return (
         <div className="wrapper">
