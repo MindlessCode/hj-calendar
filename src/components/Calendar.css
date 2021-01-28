@@ -79,7 +79,6 @@ h1, .Months > i  {
     border-radius: 0.6rem;
     background-color: rgb(255, 216, 157);
 }
-
 .Days {
     justify-items: center;
     padding: 1.2rem;
@@ -90,14 +89,14 @@ h1, .Months > i  {
     color:rgb(255, 216, 157);
     text-align: left;
     text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-    
 }
-
 @keyframes colorChange {
     0% {
         background:rgb(29, 29, 29);
     }
-
+    20% {
+        background:rgb(53, 53, 53);
+    }
 }
 .DaysContainer {
     background:rgb(29, 29, 29);
