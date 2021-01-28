@@ -163,7 +163,7 @@ h1, .Months > i  {
         grid-template-columns: repeat(3, 1fr);  
     }
     .Cal2 > div > h1 {
-        font-size: 12px;
+        font-size: 20px;
     }
     .DaysContainer * {
         overflow: hidden;
@@ -211,12 +211,12 @@ h1, .Months > i  {
         align-items: center;
     }
     .Months{
-        justify-content: center;
+         justify-content: center;
          display: grid;
          grid-template-columns: repeat(3, 1fr);  
     }
     .Cal2 > div > h1 {
-         font-size: 12px;
+         font-size: 15px;
     }
     .Cal2 {
         overflow: hidden;
@@ -224,7 +224,7 @@ h1, .Months > i  {
      .monthSelect{
          justify-items: center;
          display:grid;
-         grid-template-columns:repeat(12, calc(768px/15));
+         grid-template-columns:repeat(12, calc(768px/18));
          border-top-left-radius: 0.6rem;
          border-top-right-radius: 0.6rem;
          color:rgb(255, 216, 157);
@@ -267,14 +267,11 @@ h1, .Months > i  {
         height: 100%;
     }
     .Months{
-         justify-content: center;
-         
+         justify-items: center;
          display: grid;
-         grid-template-columns: repeat(3, 1fr);  
+         grid-template-columns: repeat(3, 110px);  
     }
-    .Months > h1{
-        font-size: 12px;
-    }
+
     .Cal {
         margin-top: 5rem;
         height: 100%;
@@ -284,6 +281,10 @@ h1, .Months > i  {
         overflow: hidden;
         height: 120%;
     }
+    .Cal2 > div > h1 {
+        width: 50%;
+        font-size: 15px;
+   }
      .monthSelect{
          justify-items: center;
          display:grid;
