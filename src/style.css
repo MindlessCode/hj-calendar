@@ -5,6 +5,7 @@
     font-family: 'PT Sans', sans-serif;
 }
 body {
+    overflow-x: hidden;
     background:rgb(43, 43, 43);
 }
 .wrapper {
@@ -14,7 +15,7 @@ body {
     top: -2rem;
 }
 nav {
-
+    position: fixed;
     display:flex;
     justify-content: space-around;
     align-items:center;
