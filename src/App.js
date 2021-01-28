@@ -1,21 +1,15 @@
 import React, { useRef, useState } from 'react'
 import moment from 'moment'
 import Calendar from './components/Calendar.js';
-
 import './style.css';
 
 const App = () => {
-
-
     const styleRef = useRef();
-
     function translate() {
         styleRef.current.classList.toggle('nav-active');
     }
     const [value, setValue] = useState(moment());
-    
     return (
-        
         <div className="App">
             <link
                 rel="stylesheet"
@@ -45,10 +39,7 @@ const App = () => {
                             <div className="line3"></div>
                         </div>
                     </nav>
-                    
                         <Calendar value={value} onChange={setValue}/>
-                       
-                  
             </div>
         );
 }
