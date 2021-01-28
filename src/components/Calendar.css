@@ -2,9 +2,12 @@
     display:grid;
     justify-items: center;
 }
+.Cal {
+    margin-top:5rem;
+    margin-bottom: 0;
+}
 .Cal2 {
     border-radius: 0.6rem;
-    margin: -0.6rem;
     padding: 1.6rem;
     background:rgb(29, 29, 29);
     box-shadow: 0 0.5rem 0.6rem rgb(27, 27, 27);
@@ -146,6 +149,8 @@ h1, .Months > i  {
         border-radius: 0.6rem;
     }
     .Cal {
+        margin-top: 5rem;
+        height: 100%;
         width: 100%;
     }
     .Cal2 {
@@ -198,6 +203,7 @@ h1, .Months > i  {
         overflow: hidden;
     }
     .Cal {
+        margin-top: 5rem;
         width: 100%;
     }
     .Cal2 {
@@ -258,18 +264,25 @@ h1, .Months > i  {
         overflow-x: hidden;
     }
     .conta {
-        height: 700px;
+        height: 100%;
     }
     .Months{
          justify-content: center;
+         
          display: grid;
          grid-template-columns: repeat(3, 1fr);  
     }
-    .Cal2 div h1 {
-         font-size: 12px;
+    .Months > h1{
+        font-size: 12px;
+    }
+    .Cal {
+        margin-top: 5rem;
+        height: 100%;
+        width: 100%;
     }
     .Cal2 {
         overflow: hidden;
+        height: 120%;
     }
      .monthSelect{
          justify-items: center;
@@ -291,7 +304,8 @@ h1, .Months > i  {
        
      }
      .DaysContainer {
-        height: 100;
+        height: 100%;
+        align-items: center;
      }
     .Days {
         grid-template-columns: repeat(7, 1fr);
@@ -299,7 +313,6 @@ h1, .Months > i  {
        
     }
     .Days div  {
-        
         height: 150%;
         width: 100%;
     }
@@ -319,7 +332,7 @@ h1, .Months > i  {
         overflow: hidden;
     }
     .conta {
-        height: 620px;
+        height: 100%;
     }
     .Cal, .Cal2 {
         width: 100%;
@@ -354,7 +367,7 @@ h1, .Months > i  {
         font-size: 7px;
     }
     .DaysContainer {
-        height: 100;
+        height: 100%;
      }
     .Days {
         grid-template-columns: repeat(7, 1fr);
@@ -362,13 +375,17 @@ h1, .Months > i  {
        
     }
     .Days div  {
-        
+        font-size: 5px;
         height: 150%;
         width: 100%;
     }
     .dy div {
-        height: 100%;
+        height: 50%;
         width: 100%;
-        font-size: 7px;
+        font-size: 6px;
+    }
+    .selected{
+        height: 100%;
+        width: 120%;
     }
 }
