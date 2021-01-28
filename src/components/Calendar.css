@@ -92,10 +92,10 @@ h1, .Months > i  {
 }
 @keyframes colorChange {
     0% {
-        background:rgb(29, 29, 29);
+        background:rgb(22, 22, 22);
     }
     20% {
-        background:rgb(29, 29, 29);
+        background:rgb(22, 22, 22);
     }
 }
 .DaysContainer {
@@ -106,7 +106,7 @@ h1, .Months > i  {
     width: 7em;
     height: 7em;
     padding: 1em;
-    background:rgb(29, 29, 29);
+    background:rgb(22, 22, 22);
     border-style:groove;
     border-color:seashell;
 }
@@ -116,6 +116,7 @@ h1, .Months > i  {
 }
 .prevDays {
     border-radius: 0.6rem;
+    background:rgb(51, 51, 51);
 }
 .prevDays div {
     color: rgb(155, 155, 155);
@@ -146,9 +147,12 @@ h1, .Months > i  {
     }
     .Cal {
         width: 100%;
+
+
     }
     .Cal2 {
         width: 100%;
+        overflow: hidden;
     }
     .Months{
         justify-content: center;
@@ -359,5 +363,6 @@ h1, .Months > i  {
     .dy div {
         height: 100%;
         width: 100%;
+        font-size: 7px;
     }
 }
