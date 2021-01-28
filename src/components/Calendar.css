@@ -288,7 +288,7 @@ h1, .Months > i  {
      .monthSelect{
          justify-items: center;
          display:grid;
-         grid-template-columns:repeat(12, calc(768px/20));
+         grid-template-columns:repeat(12, calc(768px/26));
          border-top-left-radius: 0.6rem;
          border-top-right-radius: 0.6rem;
          color:rgb(255, 216, 157);
