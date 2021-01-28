@@ -249,6 +249,7 @@ h1, .Months > i  {
     .dy div {
         height: 50%;
         width: 100%;
+        font-size: 9px;
     }
 }
 @media screen and (max-width: 512px) {
@@ -301,6 +302,7 @@ h1, .Months > i  {
     .dy div {
         height: 100%;
         width: 100%;
+        font-size: 9px;
     }
     
 }
