@@ -9,10 +9,10 @@ body {
     background:rgb(43, 43, 43);
 }
 .wrapper {
+    margin-top:-5rem;
     display: grid;
     grid-template-columns: 1250px 500px;
     justify-content: center;
-    top: -2rem;
 }
 nav {
     overflow: hidden;
