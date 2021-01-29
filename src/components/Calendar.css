@@ -242,21 +242,18 @@ h1, .Months > i  {
         gap: 0.2rem;
     }
     .Days {
+        
         padding: 0.6rem;
         grid-template-columns: repeat(7, 1fr);
     }
     .Days div  {
         font-size: 12px;
         width: 100%;
+        border-color:rgb(255, 255, 255);
+        border-width: 0.1px;
     }
-    .dy div {
-        padding: 1.6px;
-        height: 50%;
-        width: 150%;
-        font-size: 8px;
-    }
+ 
     .selected {
-        margin: 0rem;
         width: 100%;
     }
     .prevDays div {
@@ -318,7 +315,6 @@ h1, .Months > i  {
     .Days div  {
         overflow:hidden;
         font-size: 8px;
-        height: 120%;
         width: 100%;
     }
     .dy div {
