@@ -15,7 +15,6 @@ body {
     justify-content: center;
 }
 nav {
-    overflow: hidden;
     display:flex;
     justify-content: space-around;
     align-items:center;
@@ -51,7 +50,6 @@ nav {
     font-size: 18px;
 }
 .burger {
-    display:none;
     cursor: pointer;
     background:rgb(255, 216, 157);
     z-index: 999;
@@ -145,7 +143,6 @@ nav {
         padding: 0.2rem;
     }
     .nav-links{
-        display:none;
         position: absolute;
         right: 0px;
         height: 100%;

@@ -6,6 +6,7 @@
     margin-top:5rem;
 }
 .Cal2 {
+    z-index: 888;
     border-radius: 0.6rem;
     margin-top: -0.6rem;
     padding: 1.6rem;
@@ -112,7 +113,6 @@ h1, .Months > i  {
 }
 @media screen and (max-width: 1024px) {
     .conta {
-        overflow: hidden;
         border-radius: 0.6rem;
     }
     .Cal {
@@ -123,7 +123,6 @@ h1, .Months > i  {
     }
     .Cal2 {
         width: 100%;
-        overflow: hidden;
     }
     .Months{
         justify-content: center;
@@ -133,9 +132,7 @@ h1, .Months > i  {
     .Cal2 > div > h1 {
         font-size: 20px;
     }
-    .DaysContainer * {
-        overflow: hidden;
-    }
+
     .DaysContainer {
         height: 100%;
     }
@@ -162,12 +159,12 @@ h1, .Months > i  {
         width: 100%;
     }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
     body {
         overflow-x: hidden;
     }
     .conta {
-        overflow: hidden;
+        height: 100%;
     }
     .Cal {
         margin-top: 5rem;
@@ -186,24 +183,13 @@ h1, .Months > i  {
     .Cal2 > div > h1 {
          font-size: 15px;
     }
-    .Cal2 {
-        overflow: hidden;
-    }
      .monthSelect{
          justify-items: center;
          display:grid;
-         grid-template-columns:repeat(12, calc(768px/18));
+         grid-template-columns:repeat(12, calc(768px/12));
          border-top-left-radius: 0.6rem;
          border-top-right-radius: 0.6rem;
          color:rgb(255, 216, 157);
-     }
-     .monthSelect > div {
-         overflow: hidden;
-         width: 100%;
-         font-size: 10px;
-     }
-     .Weeks > div {
-         font-size: 10px;
      }
     .prevDays {
         height: 100%;
@@ -215,36 +201,23 @@ h1, .Months > i  {
     }
     .Days div {
         
-        height: 70px;
-        width: 50px;
-    }
-     .DaysContainer * {
-        overflow: hidden;
-    }
-    .dy div {
-        height: 50%;
-        width: 100%;
-        font-size: 9px;
+        height: 100%;
+        width: 100%x;
     }
 }
-@media screen and (max-width: 512px) {
+@media screen and (max-width: 768px) {
     body {
         overflow-x: hidden;
     }
     .conta {
-        height: 100%;
+        overflow: hidden;
     }
     .Months{
          justify-items: center;
          display: grid;
          grid-template-columns: repeat(3, 110px);  
     }
-    .Cal {
-        margin-top: 5rem;
-        margin-bottom: -0.1rem;
-        height: 100%;
-        width: 100%;
-    }
+
     .Cal2 {
         overflow: hidden;
         height: 120%;
@@ -254,7 +227,6 @@ h1, .Months > i  {
         font-size: 15px;
     }
     .Months * {
-        overflow: hidden;
         height: 50%;
     }
     .monthSelect{
@@ -263,11 +235,7 @@ h1, .Months > i  {
         border-top-left-radius: 0.6rem;
         border-top-right-radius: 0.6rem;
         color:rgb(255, 216, 157);
-    }
-    .monthSelect > div {
-        overflow: hidden;
-        width: 96%;
-        font-size: 7px;
+        width: 100%;
     }
     .Weeks {
         grid-template-columns: repeat(7, 1fr);
@@ -276,11 +244,9 @@ h1, .Months > i  {
     .Days {
         padding: 0.6rem;
         grid-template-columns: repeat(7, 1fr);
-        height: 70px;
     }
     .Days div  {
         font-size: 12px;
-        height: 120%;
         width: 100%;
     }
     .dy div {
@@ -296,23 +262,20 @@ h1, .Months > i  {
     .prevDays div {
         font-size: 8px;
     }
-    .DaysContainer {
-        height: 60%;
-        align-items: center;
-    }
 }
-@media screen and (max-width: 376px) {
+@media screen and (max-width:512px) {
     * {
-        overflow: hidden;
         border-radius: 0.2rem;
     }
     body {
         overflow: hidden;
     }
     .conta {
+        overflow: hidden;
         height: 100%;
     }
     .Cal, .Cal2 {
+        overflow: hidden;
         width: 100%;
         border-radius: 0.2rem;
     }
@@ -323,8 +286,8 @@ h1, .Months > i  {
         height: 100px;
     }
     .DaysContainer {
+        height: 20%;
         overflow: hidden;
-      
     }
     .monthSelect{
         display:grid;
@@ -353,6 +316,7 @@ h1, .Months > i  {
        
     }
     .Days div  {
+        overflow:hidden;
         font-size: 8px;
         height: 120%;
         width: 100%;

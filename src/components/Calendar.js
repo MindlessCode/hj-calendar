@@ -4,7 +4,6 @@ import buildCalendar from "./buildCal";
 import Tasks from './Tasks.js';
 import './Calendar.css'
 
-
 const Calendar = ({ value, onChange }) => {
     const [tasks, setTasks] = useState([
         {

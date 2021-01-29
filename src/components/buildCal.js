@@ -1,6 +1,3 @@
-
-
-
 export default function buildCalendar(value) {
     const startDay = value.clone().startOf("month").startOf("week");
     var endDay = value.clone().endOf("month").endOf("week");
