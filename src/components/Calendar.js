@@ -12,6 +12,7 @@ const Calendar = ({ value, onChange }) => {
             priority: 5,
             exp: 10,
             sDate: 'test',
+            reminder: true,
         },
         {
             id: 2,
@@ -19,6 +20,7 @@ const Calendar = ({ value, onChange }) => {
             priority: 4,
             exp: 8,
             sDate: 'test',
+            reminder: true,
         },
         {
             id: 3,
@@ -26,11 +28,11 @@ const Calendar = ({ value, onChange }) => {
             priority: 3,
             exp: 6,
             sDate: 'test',
+            reminder: true,
         }
     ])
-
-    const [startDate, setStartDate] = useState(
-        { sDate: '' }
+    const [startDate, setStartDate] = useState( ()=>
+        {return 0}
     )
     const [calendar, setCalendar] = useState([]);
 
