@@ -51,7 +51,7 @@ nav {
     font-size: 18px;
 }
 .burger {
-    display: none;
+    display:none;
     cursor: pointer;
     background:rgb(255, 216, 157);
     z-index: 999;
@@ -95,8 +95,6 @@ nav {
         gap: 2.2rem;
    }
    .nav-links{
-        display:none;
-        position: absolute;
         right: 0px;
         height: 100%;
         top: 3rem;
@@ -114,7 +112,6 @@ nav {
 }
 .nav-active {
     transform: translateY(0%);
-    display: flex;
 }
 @media screen and (max-width: 512px) {
     *{
@@ -124,7 +121,6 @@ nav {
         gap: 10rem;
     }
     .nav-links{
-        display:none;
         position: absolute;
         right: 0px;
         height: 100%;
