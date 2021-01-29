@@ -54,8 +54,10 @@ nav {
     display: none;
     cursor: pointer;
     background:rgb(255, 216, 157);
+    z-index: 999;
 }
 .burger div {
+    
     width: 25px;
     height: 3px;
     background-color:rgb(43, 43, 43);
@@ -93,6 +95,7 @@ nav {
         gap: 2.2rem;
    }
    .nav-links{
+        display:none;
         position: absolute;
         right: 0px;
         height: 100%;
@@ -111,6 +114,7 @@ nav {
 }
 .nav-active {
     transform: translateY(0%);
+    display: flex;
 }
 @media screen and (max-width: 512px) {
     *{
@@ -120,6 +124,7 @@ nav {
         gap: 10rem;
     }
     .nav-links{
+        display:none;
         position: absolute;
         right: 0px;
         height: 100%;
@@ -144,6 +149,7 @@ nav {
         padding: 0.2rem;
     }
     .nav-links{
+        display:none;
         position: absolute;
         right: 0px;
         height: 100%;
