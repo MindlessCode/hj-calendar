@@ -1,9 +1,10 @@
-.conta {
+.calendar {
     display:grid;
+    
     justify-content: center;
 }
-.Cal {
-    margin-top:5rem;
+.today {
+    margin: 5rem 0rem;
 }
 .Cal2 {
     z-index: 888;
@@ -14,7 +15,12 @@
     background:rgb(29, 29, 29);
     box-shadow: 0 0.5rem 0.6rem rgb(27, 27, 27);
 }
+.selectToday {
+    display:flex;
+    justify-content:left;
+}
 .monthSelect{
+    margin-top:5rem;
     display:grid;
     justify-content: center;
     grid-template-columns:repeat(12, 88.5px);
@@ -40,6 +46,7 @@
     width: calc(1080px/13.65);
     border-style:groove;
 }
+
 .Months  {
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -71,7 +78,7 @@ h1, .Months > i  {
     padding: 1.2rem;
     display: grid;
     grid-template-columns:repeat(7, 1fr);
-    gap: 2rem;
+    row-gap: 0.1rem;
     color:rgb(255, 216, 157);
     text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 }
@@ -87,14 +94,15 @@ h1, .Months > i  {
     }
 }
 .Days > div {
-    width: 7em;
     height: 7em;
+    width: 7em;
     padding: 1em;
     border-style:groove;
 }
-.Days > div:not(.prevDays){
+.Days > div:not(.selected):not(.prevDays){
     animation: colorChange 3s ease-in forwards;
 }
+
 .prevDays {
     border-radius: 0.6rem;
     background:rgb(51, 51, 51);
@@ -102,9 +110,11 @@ h1, .Months > i  {
 }
 .dy {
     border-radius: 0.6rem;
+    background:rgb(255, 216, 157);
+
 }
 .selected {
-    background:rgb(255, 216, 157);
+    background: rgb(255, 216, 157);
     padding: 0.6rem;
     border-radius: 0.6rem;
     color: black;
@@ -114,7 +124,7 @@ h1, .Months > i  {
     cursor: pointer;
 }
 @media screen and (max-width: 1024px) {
-    .conta {
+    .calendar {
         border-radius: 0.6rem;
     }
     .Cal {
@@ -157,7 +167,6 @@ h1, .Months > i  {
         overflow:hidden;
         font-size: 12px;
     }
-  
     .prevDays {
         height: 100%;
         width: 100%;
@@ -167,14 +176,10 @@ h1, .Months > i  {
     body {
         overflow-x: hidden;
     }
-    .conta {
+    .calendar {
         height: 100%;
     }
-    .Cal {
-        margin-top: 5rem;
-        margin-bottom: -0.1rem;
-        width: 100%;
-    }
+
     .Cal2 {
         width: 100%;
         align-items: center;
@@ -213,8 +218,9 @@ h1, .Months > i  {
     body {
         overflow-x: hidden;
     }
-    .conta {
+    .calendar {
         overflow: hidden;
+        width: 100%;
     }
     .Months{
          justify-items: center;
@@ -222,7 +228,7 @@ h1, .Months > i  {
          grid-template-columns: repeat(3, 110px);  
     }
     .Cal2 {
-        height: 120%;
+        height: 100%;
     }
     .Cal2 > div > h1 {
         width: 50%;
@@ -245,15 +251,20 @@ h1, .Months > i  {
         gap: 0.2rem;
     }
     .Days {
-        padding: 0.6rem;
-        gap: .6rem;
+        padding-top: 0.1;
+        padding-bottom: -50;
+
     }
     .Days div  {
         font-size: 12px;
-        height: 80%;
+        height: 90%;
         width: 100%;
         border-color:rgb(255, 255, 255);
         border-width: 0.1px;
+    }
+    .DaysContainer {
+        padding: 0.2rem;
+        overflow:hidden;
     }
     .selected {
         width: 100%;
@@ -262,70 +273,63 @@ h1, .Months > i  {
         font-size: 8px;
     }
 }
-@media screen and (max-width:512px) {
-    * {
-        border-radius: 0.2rem;
-    }
+
+@media screen and (max-width: 425px) {
     body {
-        overflow: hidden;
+        overflow-x: hidden;
     }
-    .conta {
-        overflow: hidden;
-        height: 100%;
-    }
-    .Cal, .Cal2 {
+    .calendar {
         overflow: hidden;
         width: 100%;
-        border-radius: 0.2rem;
     }
-    .Months {
-        justify-items: center;
-        align-content: center;
-        grid-template-columns: 115px 150px 115px;
-        height: 100px;
+    .Months{
+         justify-items: center;
+         display: grid;
+         grid-template-columns: repeat(3, 110px);  
     }
-    .DaysContainer {
-        height: 20%;
-        overflow: hidden;
+    .Cal2 {
+        height: 100%;
+    }
+    .Cal2 > div > h1 {
+        width: 50%;
+        font-size: 15px;
+    }
+    .Months * {
+        height: 50%;
     }
     .monthSelect{
         display:grid;
-        grid-template-columns:repeat(12, calc(768px/24));
         justify-content: center;
+        grid-template-columns:repeat(12, calc(768px/18));
+        border-top-left-radius: 0.6rem;
+        border-top-right-radius: 0.6rem;
+        color:rgb(255, 216, 157);
+        width: 100%;
     }
-    .monthSelect > div {
-        padding: 0.2rem;
-        font-size: 7px;
-    }
-    .selectedMonth {
-        text-align: center;
-        border-radius: 0.2rem;
-        height: 25px;
-    }
-
-    .Weeks > div {
-        font-size: 7px;
-    }
-    .DaysContainer {
-        height: 100%;
-     }
-    .Days {
+    .Weeks {
         grid-template-columns: repeat(7, 1fr);
-        height: 70px;
-       
+        gap: 0.2rem;
+    }
+    .Days {
+        padding-top: 0.1;
+        padding-bottom: -50;
+
     }
     .Days div  {
+        font-size: 12px;
+        height: 90%;
+        width: 100%;
+        border-color:rgb(255, 255, 255);
+        border-width: 0.1px;
+    }
+    .DaysContainer {
+        padding: 0.2rem;
         overflow:hidden;
-        font-size: 8px;
+    }
+    .selected {
         width: 100%;
     }
-    .dy div {
-        height: 50%;
-        width: 100%;
+    .prevDays div {
         font-size: 8px;
-    }
-    .selected{
-        height: 100%;
-        width: 120%;
     }
 }

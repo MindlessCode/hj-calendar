@@ -5,12 +5,12 @@ import './Task.css';
 const Tasks =({tasks, startDate, onDelete})=> {
     return (
         <div className="taskContainer">
-          <h2> Date: {startDate.sDate}</h2>
-          {tasks.map((task)=> (
-                <Task key={task.id} task={task} startDate={startDate} onDelete={onDelete}/>
+          <h2> Date: {startDate.sDate} </h2>
+          <div>{tasks.length > 0 ? tasks.map((task)=> (
+                <Task key={task.id} taskL={task} startDate={startDate} onDelete={onDelete}/>
             )
-          )}
-          {(startDate.sDate >= moment().format("YYYY-MM-DD")) ? <input type="button" value="Submit"className="subBtn"></input> : <input type="button" value="Submit" className="subBtn" disabled></input>}
+          ) : "No Tasks Today!"}</div>
+          {(startDate.sDate >= moment().clone().format("YYYY-MM-DD")) ? <input type="button" value="Submit"className="subBtn"></input> : <input type="button" value="Submit" className="subBtn" disabled></input>}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-.taskContainer {
+.taskContainer{
     position: relative;
     margin-top:5rem;
     margin-bottom: 0;
@@ -9,9 +9,15 @@
     box-shadow: 0rem 0.3rem 0.7rem rgb(7, 7, 7);
     border-radius: 0.6rem;
 }
-.task {
+.taskContainer div {
+    padding: 1rem 0.2rem;
+    color: rgb(255, 216, 157);
+   
+}
+.taskContainer .task {
     border-radius: 0.6rem;
     background: rgb(255, 216, 157);
+    color:rgb(7, 7, 7);
     padding: 10px 20px;
     align-content: center;
     margin:  5px;
@@ -29,6 +35,9 @@ h2 {
 .subBtn {
     position: absolute;
     margin: 1.6rem 0;
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+    background:rgb(255, 216, 157);
     box-shadow: 0 0.3rem 0.5rem rgb(7, 7, 7);
     width: 20%;
     left:40%;

@@ -21,16 +21,16 @@ const App = () => {
                         </div>
                         <ul className="nav-links" ref={styleRef}>
                             <li>
-                                <a href="/Calendar.html">Home</a>
+                                <a href="/#">Home</a>
                             </li>
                             <li>
-                                <a href="/Calendar.html">Calendar</a>
+                                <a href="/#">Calendar</a>
                             </li>
                             <li>
-                                <a href="/Calendar.html">Projects</a>
+                                <a href="/#">Projects</a>
                             </li>
                             <li>
-                                <a href="/Calendar.html">About</a>
+                                <a href="/#">About</a>
                             </li>
                         </ul>
                         <div className="burger" onClick={translate}>
