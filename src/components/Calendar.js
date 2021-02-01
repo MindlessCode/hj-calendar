@@ -72,11 +72,6 @@ const Calendar = ({ value, onChange }) => {
         currDate.sDate = day.toString()
         setStartDate(currDate);
     }
-
-    function getCurrentDate() {
-        return value.format("MMM-DD")
-    }
-
     return (
         <div className="wrapper">
 
@@ -94,7 +89,7 @@ const Calendar = ({ value, onChange }) => {
                         <i className="fas fa-angle-right next" onClick={() => onChange(nextMonth())}></i>
                     </div>
                     <div className="Weeks">
-                        <div>SUN {currMonthName()}</div>
+                        <div>SUN</div>
                         <div>MON</div>
                         <div>TUE</div>
                         <div>WED</div>
