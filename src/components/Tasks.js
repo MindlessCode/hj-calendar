@@ -9,7 +9,7 @@ const Tasks =({tasks, startDate, onDelete})=> {
           <div>{tasks.length > 0 ? tasks.map((task)=> (
                 <Task key={task.id} taskL={task} startDate={startDate} onDelete={onDelete}/>
             )
-          ) : "No Tasks Today!"}</div>
+          ) : "No Tasks!"}</div>
           {(startDate.sDate >= moment().clone().format("YYYY-MM-DD")) ? <input type="button" value="Submit"className="subBtn"></input> : <input type="button" value="Submit" className="subBtn" disabled></input>}
         </div>
     )

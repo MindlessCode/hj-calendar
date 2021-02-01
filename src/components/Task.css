@@ -21,7 +21,6 @@
     padding: 10px 20px;
     align-content: center;
     margin:  5px;
-    cursor: pointer;
 }
 h2 {
     color:rgb(255, 238, 200);
@@ -43,6 +42,10 @@ h2 {
     left:40%;
     right: 40%;
     bottom: 0;
+}
+
+.subBtn:hover {
+    cursor: pointer;
 }
 @media screen and (max-width: 1024px) {
     .taskContainer {

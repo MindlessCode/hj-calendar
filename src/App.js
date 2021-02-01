@@ -15,7 +15,7 @@ const App = () => {
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
             />
-                    <nav>
+                    <nav className="customElement1">
                         <div className="logo">
                             <h4>HARRY J</h4>
                         </div>
@@ -40,6 +40,7 @@ const App = () => {
                         </div>
                     </nav>
                         <Calendar value={value} onChange={setValue}/>
+                    <div className="">Hello</div>
             </div>
         );
 }

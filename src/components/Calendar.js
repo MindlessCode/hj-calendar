@@ -31,9 +31,21 @@ const Calendar = ({ value, onChange }) => {
             reminder: true,
         }
     ])
-    const [startDate, setStartDate] = useState( ()=>
-        {return 0}
-    )
+    const [startDate, setStartDate] = useState( [
+        {   id: 1,
+            sDate: '',
+            eDate: '',
+        },
+        {   id: 2,
+            sDate: '',
+            eDate: '',
+        },
+        {   id: 3,
+            sDate: '',
+            eDate: '',
+        }
+
+    ])
     const [calendar, setCalendar] = useState([]);
 
     useEffect(() => {
@@ -68,10 +80,13 @@ const Calendar = ({ value, onChange }) => {
     }
     const showDate = (year, month, selectedDate) => {
         const currDate = [startDate];
-        var day = moment([year, month, selectedDate]).month(month).format("YYYY-MM-DD")
+        var day = moment([year, month, selectedDate]).format("YYYY-MM-DD")
+        var day2 = moment().format("YYYY-MM-DD")
+        console.log(day===day2)
         currDate.sDate = day.toString()
         setStartDate(currDate);
     }
+
     return (
         <div className="wrapper">
 
@@ -82,13 +97,13 @@ const Calendar = ({ value, onChange }) => {
                                 {moment().month(mons).format("MMM")}
                             </div>)}
                     </div>
-                <div className="Cal2">
-                    <div className="Months">
+                <div className="Cal2 ">
+                    <div className="customElement1 Months">
                         <i className="fas fa-angle-left prev" onClick={() => onChange(prevMonth())}></i>
                             <h1>{currMonthName()} {currYear()} </h1>
                         <i className="fas fa-angle-right next" onClick={() => onChange(nextMonth())}></i>
                     </div>
-                    <div className="Weeks">
+                    <div className="Weeks customElement1">
                         <div>SUN</div>
                         <div>MON</div>
                         <div>TUE</div>
@@ -98,10 +113,8 @@ const Calendar = ({ value, onChange }) => {
                         <div>SAT</div>
                     </div>
                     <div className="DaysContainer">
-                        {calendar.map(week => <div key={week.toString()} className="Days">{
-                            week.map(day => <div key={day} className={(!(day.clone().month() === value.clone().month())) ? "prevDays" : (((day.year()=== moment().year())&&(day.date()=== moment().date()) && (value.clone().month() === moment().month()))) ? "selected" : "dy"} onClick={() => showDate(day.year(), day.month(), day.date())}>
-                                {/* {console.log(day.date(), "same day?" , moment().date(), "Bool: ", value.isSame(day.date(), moment().date()))}
-                                {console.log(value.month(), "same month?" , moment().month())} */}
+                        {calendar.map(week => <div key={week.toString()} className="Days ">{
+                            week.map(day => <div key={day} className={(!(day.clone().month() === value.clone().month())) ? "prevDays " : (((day.year()=== moment().year())&&(day.date()=== moment().date()) && (value.clone().month() === moment().month()))) ? "selected customElement1" : "dy customElement1"} onClick={() => showDate(day.year(), day.month(), day.date())}>
                                 <div> {day.clone().format("D").toString()} </div>
                             </div>)
                         }
