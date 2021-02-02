@@ -75,35 +75,41 @@ const Calendar = ({ value, onChange }) => {
     function setMonthName(arg) {
         return value.clone().month(arg)
     }
-    const deleteTask = (id) => {
-        setTasks(tasks.filter((task) => task.id !== id))
-    }
+
     const showDate = (year, month, selectedDate) => {
         const currDate = [startDate];
         var day = moment([year, month, selectedDate]).format("YYYY-MM-DD")
-        var day2 = moment().format("YYYY-MM-DD")
-        console.log(day===day2)
         currDate.sDate = day.toString()
+
+        tasks.map((task)=> task.sDate = currDate.sDate)
+
+
         setStartDate(currDate);
     }
+    const deleteTask = (id) => {
+        setTasks(tasks.filter((task) => task.id !== id))
+    }
 
+    const toggleReminder = (id) => {
+        setTasks(tasks.map((task)=> task.id === id ? {...task, reminder: !task.reminder} : task) )
+    }
     return (
+        
         <div className="wrapper">
-
             <div className="calendar">
-                    <div className="monthSelect">
-                        {getMonthName().map(mons =>
-                            <div key={mons} className={value.isSame(value.clone().month(mons), "month") ? "selectedMonth" : ""} onClick={() => onChange(setMonthName(mons))}>
-                                {moment().month(mons).format("MMM")}
-                            </div>)}
-                    </div>
-                <div className="Cal2 ">
-                    <div className="customElement1 Months">
+                <div className="month-select">
+                    {getMonthName().map(mons =>
+                        <div key={mons} className={value.isSame(value.clone().month(mons), "month") ? "selected-month" : "unselected-months"} onClick={() => onChange(setMonthName(mons))}>
+                            {moment().month(mons).format("MMM")}
+                        </div>)}
+                </div>
+                <div className="month">
+                    <div className="custom-element-bg current-month">
                         <i className="fas fa-angle-left prev" onClick={() => onChange(prevMonth())}></i>
                             <h1>{currMonthName()} {currYear()} </h1>
                         <i className="fas fa-angle-right next" onClick={() => onChange(nextMonth())}></i>
                     </div>
-                    <div className="Weeks customElement1">
+                    <div className="weekdays custom-element-bg">
                         <div>SUN</div>
                         <div>MON</div>
                         <div>TUE</div>
@@ -112,18 +118,15 @@ const Calendar = ({ value, onChange }) => {
                         <div>FRI</div>
                         <div>SAT</div>
                     </div>
-                    <div className="DaysContainer">
-                        {calendar.map(week => <div key={week.toString()} className="Days ">{
-                            week.map(day => <div key={day} className={(!(day.clone().month() === value.clone().month())) ? "prevDays " : (((day.year()=== moment().year())&&(day.date()=== moment().date()) && (value.clone().month() === moment().month()))) ? "selected customElement1" : "dy customElement1"} onClick={() => showDate(day.year(), day.month(), day.date())}>
+                        {calendar.map(week => <div key={week.toString()} className="weeks">{
+                            week.map(day => <div key={day} className={(!(day.clone().month() === value.clone().month())) ? "fill-days " : (((day.year()=== moment().year())&&(day.date()=== moment().date()) && (value.clone().month() === moment().month()))) ? "dates today custom-element-bg" : "dates"} onClick={() => showDate(day.year(), day.month(), day.date())}>
                                 <div> {day.clone().format("D").toString()} </div>
                             </div>)
                         }
                         </div>)}
-                    </div>
                 </div>
             </div>
-
-          <Tasks tasks={tasks} startDate={startDate} onDelete={deleteTask} /> 
+          <Tasks tasks={tasks} startDate={startDate} onDelete={deleteTask} onToggle={toggleReminder}/> 
         </div>
     )
 }

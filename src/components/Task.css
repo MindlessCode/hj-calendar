@@ -1,4 +1,4 @@
-.taskContainer{
+.task-container{
     position: relative;
     margin-top:5rem;
     margin-bottom: 0;
@@ -9,12 +9,7 @@
     box-shadow: 0rem 0.3rem 0.7rem rgb(7, 7, 7);
     border-radius: 0.6rem;
 }
-.taskContainer div {
-    padding: 1rem 0.2rem;
-    color: rgb(255, 216, 157);
-   
-}
-.taskContainer .task {
+.task-container .task {
     border-radius: 0.6rem;
     background: rgb(255, 216, 157);
     color:rgb(7, 7, 7);
@@ -31,7 +26,7 @@ h2 {
     display: flex;
     justify-content: space-between;
 }
-.subBtn {
+.sub-btn {
     position: absolute;
     margin: 1.6rem 0;
     padding: 0.6rem;
@@ -44,16 +39,6 @@ h2 {
     bottom: 0;
 }
 
-.subBtn:hover {
+.sub-btn:hover {
     cursor: pointer;
-}
-@media screen and (max-width: 1024px) {
-    .taskContainer {
-      margin: 5rem;   
-    }
-}
-@media screen and (max-width: 512px) {
-    .taskContainer {
-      margin: 1rem;   
-    }
 }
