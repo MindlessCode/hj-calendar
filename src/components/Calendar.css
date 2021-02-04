@@ -106,7 +106,7 @@
 .today {
     color: black;
 }
-.dates:hover {
+.dates:hover:not(.selected-date) {
     border-color:rgb(255, 243, 177);
     cursor: pointer;
 }
