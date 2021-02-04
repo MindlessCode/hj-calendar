@@ -11,7 +11,8 @@ const Calendar = ({ value, onChange }) => {
             text: 'Doctors Appointment',
             priority: 5,
             exp: 10,
-            sDate: 'test',
+            sDate: moment().format("YYYY-MMM-DD").toString(),
+            eDate:'',
             reminder: true,
         },
         {
@@ -19,7 +20,8 @@ const Calendar = ({ value, onChange }) => {
             text: 'Homework',
             priority: 4,
             exp: 8,
-            sDate: 'test',
+            sDate: moment().format("YYYY-MMM-DD"),
+            eDate:'',
             reminder: true,
         },
         {
@@ -27,31 +29,18 @@ const Calendar = ({ value, onChange }) => {
             text: 'Cook',
             priority: 3,
             exp: 6,
-            sDate: 'test',
-            reminder: true,
+            sDate: moment().format("YYYY-MMM-DD"),
+            eDate:'',
+            reminder: false,
         }
     ])
-    const [startDate, setStartDate] = useState( [
-        {   id: 1,
-            sDate: '',
-            eDate: '',
-        },
-        {   id: 2,
-            sDate: '',
-            eDate: '',
-        },
-        {   id: 3,
-            sDate: '',
-            eDate: '',
-        }
-
-    ])
+    const [startDate, setStartDate] = useState( ()=> {
+        return 0;
+    })
     const [calendar, setCalendar] = useState([]);
-
     useEffect(() => {
         setCalendar(buildCalendar(value));
     }, [value])
-
     const mon = [];
     const firstMonth = value.clone().startOf("year").month();
     const lastMonth = value.clone().endOf("year").month();
@@ -75,21 +64,16 @@ const Calendar = ({ value, onChange }) => {
     function setMonthName(arg) {
         return value.clone().month(arg)
     }
-
     const showDate = (year, month, selectedDate) => {
         const currDate = [startDate];
         var day = moment([year, month, selectedDate]).format("YYYY-MM-DD")
-        currDate.sDate = day.toString()
-
+        currDate.sDate = day
         tasks.map((task)=> task.sDate = currDate.sDate)
-
-
         setStartDate(currDate);
     }
     const deleteTask = (id) => {
         setTasks(tasks.filter((task) => task.id !== id))
     }
-
     const toggleReminder = (id) => {
         setTasks(tasks.map((task)=> task.id === id ? {...task, reminder: !task.reminder} : task) )
     }
@@ -119,8 +103,8 @@ const Calendar = ({ value, onChange }) => {
                         <div>SAT</div>
                     </div>
                         {calendar.map(week => <div key={week.toString()} className="weeks">{
-                            week.map(day => <div key={day} className={(!(day.clone().month() === value.clone().month())) ? "fill-days " : (((day.year()=== moment().year())&&(day.date()=== moment().date()) && (value.clone().month() === moment().month()))) ? "dates today custom-element-bg" : "dates"} onClick={() => showDate(day.year(), day.month(), day.date())}>
-                                <div> {day.clone().format("D").toString()} </div>
+                            week.map(day => <div key={day} className={(!(day.clone().month() === value.clone().month())) ? "fill-days" : startDate.sDate === day.format("YYYY-MM-DD")? (((day.year() === moment().year())&&(day.date()=== moment().date()) && (value.clone().month() === moment().month()))) ? "dates selected-date today custom-element-bg" : 'dates selected-date' : (day.date()=== moment().date()) && (value.clone().month() === moment().month()) ? "dates today custom-element-bg" : "dates" }onClick={((day.clone().month() === value.clone().month())) ? () => showDate(day.year(), day.month(), day.date()): ()=> ""}>
+                                <div > {day.clone().format("D").toString()} </div>
                             </div>)
                         }
                         </div>)}

@@ -34,7 +34,7 @@
     background:rgb(29, 29, 29);
     border-radius: 0.6rem;
     box-shadow: 0 0.3rem 0.6rem rgb(0, 0, 0);
-    height: 67%;
+    height: 66%;
 }
 .current-month  {
     display: flex;
@@ -51,37 +51,40 @@
     cursor: pointer;
 }
 .weekdays{
-    padding: 0.2rem;
+    padding: 0.2rem .7rem;
     display: grid;
-    grid-template-columns:repeat(7, 125px);
+    grid-template-columns:repeat(7, 1fr);
+    gap: 2rem;
     justify-content: center;
     text-align: center;
     border-radius: 0.6rem;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
 }
 .weeks {
     margin: -10px -10px;
     padding-top: 30px;
     display: grid;
     grid-template-columns:repeat(7, 1fr);
-    justify-items: left;
+    justify-items: center;
     color:rgb(255, 216, 157);
     text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 }
-/* .weeks > div:not(.today):not(.fill-days){
-    animation: colorChange 3s ease-in forwards;
-} */
 @keyframes colorChange {
     0% {
-        background:rgb(43, 43, 43);
+        background:rgb(52, 52, 52);
     }
     20% {
         background:rgb(24, 24, 24);
     }
     100% {
-        background:rgb(29, 29, 29);
+        background:rgb(22, 22, 22);
     }
 }
+.weeks > div:not(.today):not(.fill-days){
+    animation: colorChange 3s ease-in forwards;
+}
+
 .dates {
     padding: 1.2rem;
     border-style:ridge;
@@ -106,6 +109,9 @@
 .dates:hover {
     border-color:rgb(255, 243, 177);
     cursor: pointer;
+}
+.selected-date {
+    border-color:salmon;
 }
 
 @media screen and (max-width: 768px) {
