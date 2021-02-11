@@ -18,6 +18,7 @@ body {
     grid-template-columns: 1250px 500px;
 }
 nav {
+    position: sticky;
     display:flex;
     justify-content: space-around;
     align-items:center;
@@ -36,7 +37,6 @@ nav {
     display: flex;
     justify-content: space-around;
     width: 40%;
-    z-index: 999;
 }
 .nav-links li, .nav-links a{
     list-style: none;

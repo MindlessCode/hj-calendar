@@ -4,7 +4,7 @@ import buildCalendar from "./buildCal";
 import Tasks from './Tasks.js';
 import './Calendar.css'
 
-const Calendar = ({ value, onChange }) => {
+const Calendar = ({ value, onXChange }) => {
     const [tasks, setTasks] = useState([
         {
             id: 1,
@@ -38,12 +38,15 @@ const Calendar = ({ value, onChange }) => {
         return 0;
     })
     const [calendar, setCalendar] = useState([]);
+    
     useEffect(() => {
         setCalendar(buildCalendar(value));
     }, [value])
+    
     const mon = [];
     const firstMonth = value.clone().startOf("year").month();
     const lastMonth = value.clone().endOf("year").month();
+    
     function getMonthName() {
         for (let i = firstMonth; i <= lastMonth; ++i)
             mon.push(i)
@@ -65,11 +68,9 @@ const Calendar = ({ value, onChange }) => {
         return value.clone().month(arg)
     }
     const showDate = (year, month, selectedDate) => {
-        const currDate = [startDate];
-        var day = moment([year, month, selectedDate]).format("YYYY-MM-DD")
-        currDate.sDate = day
-        tasks.map((task)=> task.sDate = currDate.sDate)
-        setStartDate(currDate);
+        const currDay = [startDate];
+        currDay.sDate = moment([year, month, selectedDate]).format("YYYY-MM-DD").toString()
+        setStartDate(currDay);
     }
     const deleteTask = (id) => {
         setTasks(tasks.filter((task) => task.id !== id))
@@ -78,20 +79,19 @@ const Calendar = ({ value, onChange }) => {
         setTasks(tasks.map((task)=> task.id === id ? {...task, reminder: !task.reminder} : task) )
     }
     return (
-        
         <div className="wrapper">
             <div className="calendar">
                 <div className="month-select">
                     {getMonthName().map(mons =>
-                        <div key={mons} className={value.isSame(value.clone().month(mons), "month") ? "selected-month" : "unselected-months"} onClick={() => onChange(setMonthName(mons))}>
+                        <div key={mons} className={value.isSame(value.clone().month(mons), "month") ? "selected-month" : "unselected-months"} onClick={() => onXChange(setMonthName(mons))}>
                             {moment().month(mons).format("MMM")}
                         </div>)}
                 </div>
                 <div className="month">
                     <div className="custom-element-bg current-month">
-                        <i className="fas fa-angle-left prev" onClick={() => onChange(prevMonth())}></i>
+                        <i className="fas fa-angle-left prev" onClick={() => onXChange(prevMonth())}></i>
                             <h1>{currMonthName()} {currYear()} </h1>
-                        <i className="fas fa-angle-right next" onClick={() => onChange(nextMonth())}></i>
+                        <i className="fas fa-angle-right next" onClick={() => onXChange(nextMonth())}></i>
                     </div>
                     <div className="weekdays custom-element-bg">
                         <div>SUN</div>
@@ -103,7 +103,14 @@ const Calendar = ({ value, onChange }) => {
                         <div>SAT</div>
                     </div>
                         {calendar.map(week => <div key={week.toString()} className="weeks">{
-                            week.map(day => <div key={day} className={(!(day.clone().month() === value.clone().month())) ? "fill-days" : startDate.sDate === day.format("YYYY-MM-DD")? (((day.year() === moment().year())&&(day.date()=== moment().date()) && (value.clone().month() === moment().month()))) ? "dates selected-date today custom-element-bg" : 'dates selected-date' : (day.date()=== moment().date()) && (value.clone().month() === moment().month()) ? "dates today custom-element-bg" : "dates" }onClick={((day.clone().month() === value.clone().month())) ? () => showDate(day.year(), day.month(), day.date()): ()=> ""}>
+                            week.map(day => 
+                            <div key={day} 
+                                className={(!(day.clone().month() === value.clone().month())) ? 
+                                    "fill-days" : startDate.sDate === day.format("YYYY-MM-DD") ? 
+                                    (((day.year() === moment().year())&&(day.date()=== moment().date()) && (value.clone().month() === moment().month()))) ? 
+                                    "dates selected-date today custom-element-bg" : 'dates selected-date' : (day.year() === moment().year() && day.date()=== moment().date()) && (value.clone().month() === moment().month()) ?
+                                    "dates today custom-element-bg" : "dates" } 
+                                    onClick={((day.clone().month() === value.clone().month())) ? () => showDate(day.year(), day.month(), day.date()): ()=> ""}>
                                 <div > {day.clone().format("D").toString()} </div>
                             </div>)
                         }

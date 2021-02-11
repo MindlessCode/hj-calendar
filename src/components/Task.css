@@ -16,7 +16,6 @@
     align-content: center;
     margin:  5px;
 }
-
 .task.reminder {
     border-left:0.5rem solid indianred;
 }
@@ -33,9 +32,11 @@ h2 {
     justify-content: space-between;
     cursor: pointer;
     user-select: none;
-
 }
-.sub-btn {
+h2 {
+  display: inline-flex;
+}
+.sub-btn, .btn-disabled {
     display: inline-block;
     background: rgb(255, 129, 129);
     color: #fff;
@@ -48,6 +49,9 @@ h2 {
     font-size: 15px;
     font-family: inherit;
 }
+.btn-disabled {
+  background: grey;
+}
 .sub-btn:focus {
     outline: none;
 }
@@ -55,8 +59,10 @@ h2 {
     display: block;
     width: 100%;
 }
-.btn-disabled {
-    display: none;
+
+.btn-disabled:hover {
+  cursor:not-allowed;
+
 }
 .sub-btn:hover {
     cursor: pointer;
@@ -64,43 +70,43 @@ h2 {
 .new-task-form {
     margin-bottom: 40px;
   }
-  
-  .form-control {
-    margin: 20px 0;
-  }
-  
-  .form-control label {
-    display: block;
-  }
-  
-  .form-control input {
-    width: 100%;
-    height: 40px;
-    margin: 5px;
-    padding: 3px 7px;
-    font-size: 17px;
-  }
-  select {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 3px 7px;
-    margin: 5px;
-    width:20%;
-    height:40px;
-  }
-  
-  .form-control-check {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .form-control-check label {
-    flex: 1;
-  }
-  
-  .form-control-check input {
-    flex: 2;
-    height: 20px;
-  }
+
+.form-control {
+  margin: 20px 0;
+}
+
+.form-control label {
+  display: block;
+}
+
+.form-control input {
+  width: 100%;
+  height: 40px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
+}
+select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 7px;
+  margin: 5px;
+  width:25%;
+  height:40px;
+}
+
+.form-control-check {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-control-check label {
+  flex: 1;
+}
+
+.form-control-check input {
+  flex: 2;
+  height: 20px;
+}

@@ -39,7 +39,7 @@ const App = () => {
                             <div className="line3"></div>
                         </div>
                     </nav>
-                        <Calendar value={value} onChange={setValue}/>
+                        <Calendar value={value} onXChange={setValue}/>
                     </div>
         );
 }
