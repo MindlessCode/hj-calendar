@@ -72,7 +72,6 @@ const NewTask = ({ onAdd }) => {
                     </select>
                     <select className='select-year' value={yearSelect? yearSelect: 'none'} onChange={(e)=> setYearSelect(e.target.value)}>
                     <option value="none"  defaultValue="true" >YEAR</option>
-
                        {selectYears.map(year => (<option key={year} value={year}>{year}</option>))}
                     </select>
                     <label>
@@ -80,12 +79,10 @@ const NewTask = ({ onAdd }) => {
                     </label>
                     <select className='select-month' value={endMonthSelect? endMonthSelect: 'none'} onChange={(e)=> setEndMonthSelect(e.target.value)}>
                     <option value="none"  defaultValue="true" >MONTH</option>
-
                         {months.map(month => (<option key={month} value={month.format("M")}>{month.format("MM")}</option>))}
                     </select>
                     <select className='select-day' value={endDaySelect? endDaySelect: 'none'} onChange={(e)=> setEndDaySelect(e.target.value)}>
                     <option value="none"  defaultValue="true" >DAY</option>
-
                         {dates.map(day => (<option key={day}>{day}</option>))}
                     </select>
                     <select className='select-year' value={endYearSelect? endYearSelect: 'none'}  onChange={(e)=> setEndYearSelect(e.target.value)}>
