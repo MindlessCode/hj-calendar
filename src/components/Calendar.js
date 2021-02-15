@@ -5,41 +5,37 @@ import Tasks from './Tasks.js';
 import './Calendar.css'
 
 const Calendar = ({ value, onXChange }) => {
-    const [tasks, setTasks] = useState([
-        {
-            id: 1,
-            text: 'Doctors Appointment',
-            priority: 5,
-            exp: 10,
-            sDate: moment().format("YYYY-MMM-DD").toString(),
-            eDate:'',
-            reminder: true,
-        },
-        {
-            id: 2,
-            text: 'Homework',
-            priority: 4,
-            exp: 8,
-            sDate: moment().format("YYYY-MMM-DD"),
-            eDate:'',
-            reminder: true,
-        },
-        {
-            id: 3,
-            text: 'Cook',
-            priority: 3,
-            exp: 6,
-            sDate: moment().format("YYYY-MMM-DD"),
-            eDate:'',
-            reminder: false,
+    const [tasks, setTasks] = useState([])
+    useEffect(()=>{
+        const getTasks = async ()=> {
+            const tasksFromServer = await fetchTasks()
+            setTasks(tasksFromServer)
         }
-    ])
+
+        getTasks()
+
+    }, [])
+    //fetch tasks
+    const fetchTasks = async () => {
+        const res = await fetch('http://localhost:5000/tasks')
+        const data = await res.json()
+
+        return data
+    }
+    const fetchTask = async (id) => {
+        const res = await fetch(`http://localhost:5000/tasks/${id}`)
+        const data = await res.json()
+
+        return data
+    }
     const [startDate, setStartDate] = useState( ()=> {
         return 0;
     })
     const [calendar, setCalendar] = useState([]);
     
     useEffect(() => {
+        setStartDate(moment().format("YYYY-MM-DD"))
+
         setCalendar(buildCalendar(value));
     }, [value])
     
@@ -72,11 +68,27 @@ const Calendar = ({ value, onXChange }) => {
         currDay.sDate = moment([year, month, selectedDate]).format("YYYY-MM-DD").toString()
         setStartDate(currDay);
     }
-    const deleteTask = (id) => {
+    const deleteTask = async (id) => {
+        await fetch(`http://localhost:5000/tasks/${id}`, {
+            method: 'DELETE',
+        })
+
         setTasks(tasks.filter((task) => task.id !== id))
     }
-    const toggleReminder = (id) => {
-        setTasks(tasks.map((task)=> task.id === id ? {...task, reminder: !task.reminder} : task) )
+    const toggleReminder = async (id) => {
+
+        const taskToToggle = await fetchTask(id)
+        const updTask = {...taskToToggle, reminder: !taskToToggle.reminder}
+
+        const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type' : 'application/json'
+            },
+            body: JSON.stringify(updTask)
+        })
+        const data = await res.json()
+        setTasks(tasks.map((task)=> task.id === id ? {...task, reminder: data.reminder} : task) )
     }
     return (
         <div className="wrapper">
@@ -111,13 +123,13 @@ const Calendar = ({ value, onXChange }) => {
                                     "dates selected-date today custom-element-bg" : 'dates selected-date' : (day.year() === moment().year() && day.date()=== moment().date()) && (value.clone().month() === moment().month()) ?
                                     "dates today custom-element-bg" : "dates" } 
                                     onClick={((day.clone().month() === value.clone().month())) ? () => showDate(day.year(), day.month(), day.date()): ()=> ""}>
-                                <div > {day.clone().format("D").toString()} </div>
+                                <div> {day.clone().format("D").toString()} </div>
                             </div>)
                         }
                         </div>)}
                 </div>
             </div>
-          <Tasks tasks={tasks} startDate={startDate} onDelete={deleteTask} onToggle={toggleReminder}/> 
+          <Tasks tasks={tasks} setTasks={setTasks} startDate={startDate} onDelete={deleteTask} onToggle={toggleReminder}/> 
         </div>
     )
 }
