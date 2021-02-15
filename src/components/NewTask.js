@@ -81,7 +81,7 @@ const NewTask = ({ onAdd }) => {
                     <select className='select-month' value={endMonthSelect? endMonthSelect: 'none'} onChange={(e)=> setEndMonthSelect(e.target.value)}>
                     <option value="none"  defaultValue="true" >MONTH</option>
 
-                        {months.map(month => (<option key={month}>{month.format("MM")}</option>))}
+                        {months.map(month => (<option key={month} value={month.format("M")}>{month.format("MM")}</option>))}
                     </select>
                     <select className='select-day' value={endDaySelect? endDaySelect: 'none'} onChange={(e)=> setEndDaySelect(e.target.value)}>
                     <option value="none"  defaultValue="true" >DAY</option>

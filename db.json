@@ -1,36 +1,18 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "text": "Doctors Appointment",
-      "priority ": 5,
-      "exp": 10,
-      "sDate": "2021-02-14",
-      "eDate": "2021-02-14",
-      "reminder": true
-    },
-    {
-      "id": 2,
-      "text": "Homework",
-      "priority": 4,
-      "exp": 8,
-      "sDate": "2021-02-14",
-      "eDate": "2021-02-14",
-      "reminder": true
-    },
-    {
-      "text": "Test",
-      "sDate": "2-14-2021",
-      "eDate": "02-15-2021",
+      "text": "Rate Rajat's Game a 0 Star",
+      "sDate": "7-7-2021",
+      "eDate": "08-2-2026",
       "reminder": true,
-      "id": 3
+      "id": 1
     },
     {
-      "text": "Test 2",
-      "sDate": "9-8-2029",
-      "eDate": "06-9-2031",
+      "text": "Kick Ass",
+      "sDate": "4-5-2021",
+      "eDate": "06-6-2024",
       "reminder": true,
-      "id": 4
+      "id": 2
     }
   ]
 }
