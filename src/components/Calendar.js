@@ -123,7 +123,7 @@ const Calendar = ({ value, onXChange }) => {
                                     "dates selected-date today custom-element-bg" : 'dates selected-date' : (day.year() === moment().year() && day.date()=== moment().date()) && (value.clone().month() === moment().month()) ?
                                     "dates today custom-element-bg" : "dates" } 
                                     onClick={((day.clone().month() === value.clone().month())) ? () => showDate(day.year(), day.month(), day.date()): ()=> ""}>
-                                <div> {day.clone().format("D").toString()} </div>
+                                <div>  {day.clone().format("D").toString()}</div><div>{tasks.map(task => (!moment(day).isBefore(task.sDate, 'date') && !moment(day).isAfter(task.eDate, 'date')? "-" : ""))}</div>
                             </div>)
                         }
                         </div>)}

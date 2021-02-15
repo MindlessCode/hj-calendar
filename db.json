@@ -1,32 +1,18 @@
 {
   "tasks": [
     {
-      "text": "Rate Rajat's Game a 0 Star",
-      "sDate": "7-7-2021",
-      "eDate": "08-2-2026",
+      "text": "Test",
+      "sDate": "2-15-2021",
+      "eDate": "2-20-2021",
       "reminder": true,
       "id": 1
     },
     {
-      "text": "Kick Ass",
-      "sDate": "4-5-2021",
-      "eDate": "06-6-2024",
-      "reminder": true,
-      "id": 2
-    },
-    {
-      "text": "Kill Bill",
-      "sDate": "2-15-2021",
-      "eDate": "03-5-2026",
-      "reminder": true,
-      "id": 3
-    },
-    {
-      "text": "Eat my homework",
-      "sDate": "4-15-2021",
-      "eDate": "03-4-2027",
+      "text": "Test 3",
+      "sDate": "3-5-2021",
+      "eDate": "3-25-2021",
       "reminder": false,
-      "id": 4
+      "id": 2
     }
   ]
 }
