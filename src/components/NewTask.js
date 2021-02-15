@@ -63,7 +63,7 @@ const NewTask = ({ onAdd }) => {
                     </label>
                     <select className='select-month' value={monthSelect? monthSelect: 'none'} onChange={(e)=> setMonthSelect(e.target.value)}>
                         <option value="none"defaultValue="true" >MONTH</option>
-                        {months.map(month => (<option key={month} value={month.format("M")}>{month.format("MM")}</option>))}
+                        {months.map(month => (<option key={month} value={month.format("M")}>{month.clone().format("MM")}</option>))}
                     </select>
                     <select className='select-day' value={daySelect? daySelect: 'none'} onChange={(e)=> setDaySelect(e.target.value)}>
                     <option value="none" defaultValue="true" >DAY</option>
