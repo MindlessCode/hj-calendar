@@ -18,7 +18,7 @@ body {
     grid-template-columns: 1250px 500px;
 }
 nav {
-    position: sticky;
+    position: -webkit-sticky;
     display:flex;
     justify-content: space-around;
     align-items:center;

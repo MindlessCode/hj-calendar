@@ -90,6 +90,20 @@ const Calendar = ({ value, onXChange }) => {
         const data = await res.json()
         setTasks(tasks.map((task)=> task.id === id ? {...task, reminder: data.reminder} : task) )
     }
+
+
+    function isDayAfterStart(nameKey, myArray) {
+        for (var i = 0; i < myArray.length; i++) {
+            if(myArray[i].sDate <= nameKey)
+                return true;
+        }
+    }
+    function isDayBeforeEnd(nameKey, myArray) {
+        for (var i = 0; i < myArray.length; i++) {
+            if(myArray[i].eDate >= nameKey)
+                return true;
+        }
+    }
     return (
         <div className="wrapper">
             <div className="calendar">
@@ -114,16 +128,16 @@ const Calendar = ({ value, onXChange }) => {
                         <div>FRI</div>
                         <div>SAT</div>
                     </div>
-                        {calendar.map(week => <div key={week.toString()} className="weeks">{
+                        {calendar.map(week => <div key={week} className="weeks">{
                             week.map(day => 
                             <div key={day} 
                                 className={(!(day.clone().month() === value.clone().month())) ? 
-                                    "fill-days" : startDate.sDate === day.format("YYYY-MM-DD") ? 
-                                    (((day.year() === moment().year())&&(day.date()=== moment().date()) && (value.clone().month() === moment().month()))) ? 
-                                    "dates selected-date today custom-element-bg" : 'dates selected-date' : (day.year() === moment().year() && day.date()=== moment().date()) && (value.clone().month() === moment().month()) ?
+                                    "fill-days" : startDate.sDate === day.clone().format("YYYY-MM-DD") ? 
+                                    (((day.year() === moment().format("YYYY"))&&(day.date()=== moment().date()) && (day.clone().month() === moment().month()))) ? 
+                                    "dates selected-date today custom-element-bg" : 'dates selected-date' : (day.year() === moment().year() && day.date()=== moment().date()) && (day.clone().month() === moment().month()) ?
                                     "dates today custom-element-bg" : "dates" } 
                                     onClick={((day.clone().month() === value.clone().month())) ? () => showDate(day.year(), day.month(), day.date()): ()=> ""}>
-                                <div>  {day.clone().format("D").toString()}</div><div>{tasks.map(task => (!moment(day).isBefore(task.sDate, 'date') && !moment(day).isAfter(task.eDate, 'date')? "-" : ""))}</div>
+                                <div>  {day.clone().format("D").toString()}</div>{isDayAfterStart(day.format("YYYY-MM-DD").toString(), tasks) && isDayBeforeEnd(day.format("YYYY-MM-DD").toString(), tasks)? <span>{"\u2B24"}</span> : ''}
                             </div>)
                         }
                         </div>)}

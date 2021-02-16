@@ -2,17 +2,24 @@
   "tasks": [
     {
       "text": "Test",
-      "sDate": "2-15-2021",
-      "eDate": "2-20-2021",
+      "sDate": "2021-02-01",
+      "eDate": "2021-02-28",
       "reminder": true,
       "id": 1
     },
     {
-      "text": "Test 3",
-      "sDate": "3-5-2021",
-      "eDate": "3-25-2021",
-      "reminder": false,
+      "text": "Test 2",
+      "sDate": "2021-03-01",
+      "eDate": "2021-03-03",
+      "reminder": true,
       "id": 2
+    },
+    {
+      "text": "Test 3",
+      "sDate": "2021-02-15",
+      "eDate": "2021-02-27",
+      "reminder": false,
+      "id": 3
     }
   ]
 }

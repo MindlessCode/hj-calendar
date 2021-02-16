@@ -29,7 +29,17 @@ h2 {
     display:flex;
     margin: .3rem;
 }
-
+.test2 {
+  display: none;
+}
+.dot {
+  margin: 0.6rem 0;
+  height: 15px;
+  width: 15px;
+  background-color: rgb(102, 102, 102);
+  border-radius: 50%;
+  display: inline-block;
+}
 .task h3 {
     display: flex;
     justify-content: space-between;
