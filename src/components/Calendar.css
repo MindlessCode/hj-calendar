@@ -81,7 +81,7 @@
         background:rgb(22, 22, 22);
     }
 }
-.weeks > div:not(.today):not(.fill-days){
+.weeks .dates:not(.today):not(.fill-days):not(.selected-date){
     animation: colorChange 3s ease-in forwards;
 }
 
@@ -93,6 +93,7 @@
     background:rgb(22, 22, 22);
     height: 7em;
     width: 7em;
+    user-select: none;
 }
 .fill-days {
     padding: 1.2rem;

@@ -7,7 +7,6 @@ const Tasks =({tasks, setTasks, startDate, onDelete, onToggle})=> {
   const [showAddTask, setShowAddTask] = useState(false)
     //add new task
   const newTask = async (task)=> {
-    
     const res = await fetch(`http://localhost:5000/tasks`, {
       method: 'POST',
       headers: {
@@ -15,13 +14,8 @@ const Tasks =({tasks, setTasks, startDate, onDelete, onToggle})=> {
       },
       body: JSON.stringify(task)
     })
-    
     const data= await res.json()
     setTasks([...tasks, data])
-    
-    // const id = Math.floor(Math.random() * 10000) + 1
-    // const newT ={id, ...task}
-    // setTasks([...tasks, newT])
   } 
   return (
         <div className="task-container">

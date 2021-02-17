@@ -13,9 +13,11 @@ body {
 }
 .wrapper {
     margin-top:-5rem;
+    justify-items: center;
     justify-content: center;
     display: grid;
-    grid-template-columns: 1250px 500px;
+    grid-template-columns: 1000px 500px;
+    grid-template-rows: 1096px 100px;
 }
 nav {
     position: -webkit-sticky;
@@ -48,9 +50,8 @@ nav {
 
 @media screen and (max-width: 1600px) {
     .wrapper {
-        justify-items: center;
         grid-template-columns:repeat(1, 1fr);
-        grid-template-rows: 1100px 600px;
+        grid-template-rows: 1080px 50px 700px; 
     }
 }
 @media screen and (max-width: 425px) {
@@ -58,8 +59,8 @@ nav {
         display: none;
     }
     .wrapper {
-        justify-items: center;
         grid-template-columns:repeat(1, 1fr);
-        grid-template-rows: 800px 700px;
+        grid-template-rows: 800px 50px 700px;
+        width: 50%;
     }
 }

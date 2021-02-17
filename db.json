@@ -1,25 +1,11 @@
 {
   "tasks": [
     {
-      "text": "Test",
-      "sDate": "2021-02-01",
-      "eDate": "2021-02-28",
+      "text": "INFO 3135 EXAM",
+      "sDate": "2021-02-17",
+      "eDate": "2021-02-17",
       "reminder": true,
-      "id": 1
-    },
-    {
-      "text": "Test 2",
-      "sDate": "2021-03-01",
-      "eDate": "2021-03-03",
-      "reminder": true,
-      "id": 2
-    },
-    {
-      "text": "Test 3",
-      "sDate": "2021-02-15",
-      "eDate": "2021-02-27",
-      "reminder": false,
-      "id": 3
+      "id": 5
     }
   ]
 }

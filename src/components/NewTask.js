@@ -19,15 +19,9 @@ const NewTask = ({ onAdd }) => {
 
     while (startYear <= endYear) {
         selectYears.push(startYear)
+        selectEYears.push(startYear)
 
         startYear++;
-    }
-    var startEYear = moment().clone().year()
-    const endEYear = moment().clone().year() + 10
-    while (startEYear <= endEYear) {
-        selectEYears.push(startEYear)
-
-        startEYear++;
     }
     //month drop down
     const startMonth = moment().clone().startOf("year")
@@ -45,19 +39,21 @@ const NewTask = ({ onAdd }) => {
         emonths.push(monE.add(1, "month").clone())
     }
     //day drop down
-    const lastDay = moment(yearSelect + '-' + monthSelect, "YYYY-MM").clone().daysInMonth();
-    const dates = [];
-    const edates = [];
-
-    for(var i = 1; i <= lastDay; i++) {
-        dates.push(i)
-
+    const startEDay = moment(yearSelect + '-' + monthSelect, "YYYY-MM").clone().startOf("month");
+    const lastEDay = moment(yearSelect + '-' + monthSelect, "YYYY-MM").clone().endOf("month");
+    const test = startEDay.subtract(1,"day")
+    const dates =[];
+    while(startEDay.isBefore(lastEDay, "day"))
+    {
+        dates.push(test.add(1,"day").clone())
     }
-    console.log(lastDay)
-    const lastEDay = moment(endYearSelect + '-' + endMonthSelect, "YYYY-MM").clone().daysInMonth();
-    for(var j = 1; j <= lastEDay; j++) {
-        edates.push(j)
-
+    const startEDay2 = moment(endYearSelect + '-' + endMonthSelect, "YYYY-MM").clone().startOf("month");
+    const lastEDay2 = moment(endYearSelect + '-' + endMonthSelect, "YYYY-MM").clone().endOf("month");
+    const test2 = startEDay2.subtract(1,"day")
+    const edates =[]
+    while(startEDay2.isBefore(lastEDay2, "day"))
+    {
+        edates.push(test2.add(1,"day").clone())
     }
     const onSubmit =(e)=> {
         e.preventDefault()
@@ -67,8 +63,17 @@ const NewTask = ({ onAdd }) => {
             return
         }
         
-        onAdd({text, sDate: yearSelect + '-' + monthSelect + '-' + moment().date(daySelect).format("DD"),  eDate: endYearSelect + '-' + endMonthSelect + '-' + moment().date(endDaySelect).format("DD"), reminder})
 
+        if(moment(yearSelect + '-' + monthSelect +'-' + daySelect, "YYYY-MM-DD") > moment(endYearSelect + '-' + endMonthSelect +'-' + endDaySelect, "YYYY-MM-DD"))
+        {
+            document.getElementById("error-div").innerHTML = "Start date must be before End date"
+            return
+        }
+        else {
+            document.getElementById("error-div").innerHTML = ""
+
+        }
+        onAdd({text, sDate: yearSelect + '-' + monthSelect + '-' + daySelect,  eDate: endYearSelect + '-' + endMonthSelect + '-' + endDaySelect, reminder})
         setText('')
         setMonthSelect('')
         setDaySelect('')
@@ -93,15 +98,15 @@ const NewTask = ({ onAdd }) => {
                         {months.map(month => (<option key={month} value={month.format("MM")}>{month.clone().format("MM")}</option>))}
                     </select>
                     <select className='select-day' value={daySelect? daySelect: 'none'} onChange={(e)=> setDaySelect(e.target.value)}>
-                    <option value="none" defaultValue="true" >DAY</option>
-
-                        {dates.map(day => (<option key={day} value={day}>{day}</option>))}
+                    <option value="none"defaultValue="true" >DAY</option>
+                        {dates.map(day => (<option key={day} value={day.format("DD")}>{day.format("DD")}</option>))}
                     </select>
                     <select className='select-year' value={yearSelect? yearSelect: 'none'} onChange={(e)=> setYearSelect(e.target.value)}>
                     <option value="none"  defaultValue="true" >YEAR</option>
                        {selectYears.map(year => (<option key={year} value={year}>{year}</option>))}
                     </select>
                     <label>
+                    <div id="error-div" style={{color: 'red'}}></div>
                         <span>End</span>
                     </label>
                     <select className='select-month' value={endMonthSelect? endMonthSelect: 'none'} onChange={(e)=> setEndMonthSelect(e.target.value)}>
@@ -109,8 +114,8 @@ const NewTask = ({ onAdd }) => {
                         {emonths.map(month => (<option key={month} value={month.format("MM")}>{month.format("MM")}</option>))}
                     </select>
                     <select className='select-day' value={endDaySelect? endDaySelect: 'none'} onChange={(e)=> setEndDaySelect(e.target.value)}>
-                    <option value="none"  defaultValue="true" >DAY</option>
-                        {edates.map(day => (<option key={day} value={day}>{day}</option>))}
+                    <option value="none"defaultValue="true" >DAY</option>
+                        {edates.map(day => (<option key={day} value={day.format("DD")}>{day.format("DD")}</option>))}
                     </select>
                     <select className='select-year' value={endYearSelect? endYearSelect: 'none'}  onChange={(e)=> setEndYearSelect(e.target.value)}>
                     <option value="none"  defaultValue="true" >YEAR</option>
