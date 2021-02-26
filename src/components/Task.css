@@ -3,7 +3,7 @@
     margin: 5rem;
     padding: 1.2rem;
     height: 700px;
-    width: 420px;
+    min-width: 480px;
     overflow: auto;
     background: rgb(68, 68, 68);
     box-shadow: 0rem 0.3rem 0.7rem rgb(7, 7, 7);
@@ -114,7 +114,7 @@ select {
   justify-content: space-between;
   padding: 7px;
   margin: 5px;
-  width:30%;
+  width:20%;
   height:40px;
   color:rgb(255, 216, 157);
   scrollbar-arrow-color: salmon;

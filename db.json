@@ -1,11 +1,18 @@
 {
   "tasks": [
     {
-      "text": "INFO 3135 EXAM",
+      "text": "INFO3140 - Exam",
+      "sDate": "2021-02-09",
+      "eDate": "2021-02-09",
+      "reminder": true,
+      "id": 1
+    },
+    {
+      "text": "INFO3135 - Exam",
       "sDate": "2021-02-17",
       "eDate": "2021-02-17",
       "reminder": true,
-      "id": 5
+      "id": 2
     }
   ]
 }

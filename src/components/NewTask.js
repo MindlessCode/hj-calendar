@@ -16,11 +16,9 @@ const NewTask = ({ onAdd }) => {
     const endYear = moment().clone().year() + 10
     const selectYears = [];
     const selectEYears = [];
-
     while (startYear <= endYear) {
         selectYears.push(startYear)
         selectEYears.push(startYear)
-
         startYear++;
     }
     //month drop down
@@ -43,44 +41,69 @@ const NewTask = ({ onAdd }) => {
     const lastEDay = moment(yearSelect + '-' + monthSelect, "YYYY-MM").clone().endOf("month");
     const test = startEDay.subtract(1,"day")
     const dates =[];
-    while(startEDay.isBefore(lastEDay, "day"))
-    {
+    while(startEDay.isBefore(lastEDay, "day")) {
         dates.push(test.add(1,"day").clone())
     }
     const startEDay2 = moment(endYearSelect + '-' + endMonthSelect, "YYYY-MM").clone().startOf("month");
     const lastEDay2 = moment(endYearSelect + '-' + endMonthSelect, "YYYY-MM").clone().endOf("month");
     const test2 = startEDay2.subtract(1,"day")
     const edates =[]
-    while(startEDay2.isBefore(lastEDay2, "day"))
-    {
+    while(startEDay2.isBefore(lastEDay2, "day")) {
         edates.push(test2.add(1,"day").clone())
+    }
+    //time drop down
+    const selectStartHour = []
+    for(let k =1; k <= 12; ++k) {
+            selectStartHour.push(moment(k, "hh").clone())
+    }
+    const selectStartMinute = []
+    for(let k = 0; k <= 59; ++k) {
+        if(k <= 9) {
+            selectStartMinute.push(moment('0'+ k, "mm").clone())
+        }
+        else {
+            selectStartMinute.push(moment(k, "mm").clone())
+
+        }
+    }
+    function isValidDate() {
+     
+      if( moment(yearSelect + '-' + monthSelect +'-' + daySelect, "YYYY-MM-DD") > moment(endYearSelect + '-' + endMonthSelect +'-' + endDaySelect, "YYYY-MM-DD") )
+       {
+           return true;
+       }
+        return false;
     }
     const onSubmit =(e)=> {
         e.preventDefault()
-        
         if(!text) {
-            alert('Please add a task name')
+            document.getElementById("task-error").innerHTML = "Please enter a task name"
             return
         }
+        else
+        document.getElementById("task-error").innerHTML = ""
         
-
-        if(moment(yearSelect + '-' + monthSelect +'-' + daySelect, "YYYY-MM-DD") > moment(endYearSelect + '-' + endMonthSelect +'-' + endDaySelect, "YYYY-MM-DD"))
+        if(isValidDate())
         {
             document.getElementById("error-div").innerHTML = "Start date must be before End date"
             return
         }
         else {
             document.getElementById("error-div").innerHTML = ""
-
+        }
+        if(endYearSelect==='' || endMonthSelect==='' || endDaySelect==='') {
+            onAdd({text, sDate: yearSelect + '-' + monthSelect + '-' + daySelect,  eDate: yearSelect + '-' + monthSelect + '-' + daySelect, reminder})
+            return
         }
         onAdd({text, sDate: yearSelect + '-' + monthSelect + '-' + daySelect,  eDate: endYearSelect + '-' + endMonthSelect + '-' + endDaySelect, reminder})
+
         setText('')
-        setMonthSelect('')
-        setDaySelect('')
-        setYearSelect(moment().year())
+        setMonthSelect(moment().clone().format("MM"))
+        setDaySelect(moment().clone().format("DD"))
+        setYearSelect(moment().clone().format("YYYY"))
         setEndMonthSelect('')
         setEndDaySelect('')
-        setEndYearSelect(moment().year())
+        setEndYearSelect('')
         setReminder(false)
     }
     return (
@@ -88,39 +111,43 @@ const NewTask = ({ onAdd }) => {
                 <div className='form-control' >
                     <label>Task</label>
                     <input type='text' value={text} placeholder='Add New Task' onChange={(e)=>setText(e.target.value)}/>
+                    <div id='task-error' style={{color:"red"}}></div>
                 </div>
                 <div className='form-control'>
                     <label>
                         <span>Start</span>
                     </label>
-                    <select className='select-month' value={monthSelect? monthSelect: 'none'} onChange={(e)=> setMonthSelect(e.target.value)}>
-                        <option value="none"defaultValue="true" >MONTH</option>
+                    <select className='select-month' defaultValue={monthSelect? monthSelect: 'none'} onChange={(e)=> setMonthSelect(e.target.value)}>
+                        <option value="">MONTH</option>
                         {months.map(month => (<option key={month} value={month.format("MM")}>{month.clone().format("MM")}</option>))}
                     </select>
                     <select className='select-day' value={daySelect? daySelect: 'none'} onChange={(e)=> setDaySelect(e.target.value)}>
-                    <option value="none"defaultValue="true" >DAY</option>
+                    <option value="">DAY</option>
                         {dates.map(day => (<option key={day} value={day.format("DD")}>{day.format("DD")}</option>))}
                     </select>
                     <select className='select-year' value={yearSelect? yearSelect: 'none'} onChange={(e)=> setYearSelect(e.target.value)}>
-                    <option value="none"  defaultValue="true" >YEAR</option>
+                    <option value="">YEAR</option>
                        {selectYears.map(year => (<option key={year} value={year}>{year}</option>))}
                     </select>
+                    <select className='select-hour' >
+                        {selectStartHour.map((hour,index) => <option key={index} value={hour}>{hour.format("hh")}</option>)}
+                    </select>
                     <label>
-                    <div id="error-div" style={{color: 'red'}}></div>
                         <span>End</span>
                     </label>
-                    <select className='select-month' value={endMonthSelect? endMonthSelect: 'none'} onChange={(e)=> setEndMonthSelect(e.target.value)}>
-                    <option value="none"  defaultValue="true" >MONTH</option>
+                    <select className='select-month' style={isValidDate()? {textDecoration: "line-through", color: "red"} : {color:""}} value={endMonthSelect? endMonthSelect: 'none'} onChange={(e)=> setEndMonthSelect(e.target.value)}>
+                    <option value="">MONTH</option>
                         {emonths.map(month => (<option key={month} value={month.format("MM")}>{month.format("MM")}</option>))}
                     </select>
-                    <select className='select-day' value={endDaySelect? endDaySelect: 'none'} onChange={(e)=> setEndDaySelect(e.target.value)}>
-                    <option value="none"defaultValue="true" >DAY</option>
+                    <select className='select-day' style={isValidDate()? {textDecoration: "line-through", color: "red"} : {color:""}} value={endDaySelect? endDaySelect: 'none'} onChange={(e)=> setEndDaySelect(e.target.value)}>
+                    <option value="">DAY</option>
                         {edates.map(day => (<option key={day} value={day.format("DD")}>{day.format("DD")}</option>))}
                     </select>
-                    <select className='select-year' value={endYearSelect? endYearSelect: 'none'}  onChange={(e)=> setEndYearSelect(e.target.value)}>
-                    <option value="none"  defaultValue="true" >YEAR</option>
+                    <select className='select-year' style={isValidDate()? {textDecoration: "line-through", color: "red"} : {color:""}} value={endYearSelect? endYearSelect: 'none'}  onChange={(e)=> setEndYearSelect(e.target.value)}>
+                    <option value="">YEAR</option>
                        {selectEYears.map(year => (<option key={year} value={year}>{year}</option>))}
                     </select>
+                    <div id="error-div" style={{color: 'red'}}></div>
                 </div>
                 <div className='form-control form-control-check'>
                     <label>Set Reminder</label>

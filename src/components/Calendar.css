@@ -27,6 +27,17 @@
     border-top-left-radius: 0.6rem;
     border-top-right-radius: 0.6rem;
 }
+img {
+    position: absolute;
+}
+.btn-today {
+    background:rgb(255, 216, 157);
+    padding: 0.2rem;
+    user-select: none;
+}
+.btn-today:hover {
+    cursor: pointer;
+}
 .month {
     overflow: hidden;
     margin-top: -0.8rem;
@@ -34,7 +45,7 @@
     background:rgb(29, 29, 29);
     border-radius: 0.6rem;
     box-shadow: 0 0.3rem 0.6rem rgb(0, 0, 0);
-    height: 66%;
+    height: 67%;
 }
 .current-month  {
     display: flex;
@@ -70,21 +81,6 @@
     color:rgb(255, 216, 157);
     text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 }
-@keyframes colorChange {
-    0% {
-        background:rgb(52, 52, 52);
-    }
-    20% {
-        background:rgb(24, 24, 24);
-    }
-    100% {
-        background:rgb(22, 22, 22);
-    }
-}
-.weeks .dates:not(.today):not(.fill-days):not(.selected-date){
-    animation: colorChange 3s ease-in forwards;
-}
-
 .dates {
     padding: 1.2rem;
     border-style:ridge;
@@ -98,9 +94,8 @@
 .fill-days {
     padding: 1.2rem;
     border-style:ridge;
-    border-color:rgb(70, 70, 70);
+    border-color:rgb(0, 0, 0);
     border-radius: 0.6rem;
-    background:rgb(70, 70, 70);
     height: 7em;
     width: 7em;
 }

@@ -52,6 +52,7 @@ nav {
     .wrapper {
         grid-template-columns:repeat(1, 1fr);
         grid-template-rows: 1080px 50px 700px; 
+        
     }
 }
 @media screen and (max-width: 425px) {

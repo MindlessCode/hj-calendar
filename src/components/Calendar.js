@@ -3,6 +3,7 @@ import moment from 'moment'
 import buildCalendar from "./buildCal";
 import Tasks from './Tasks.js';
 import ExpBar from './ExpBar.js';
+import Sunny from './Sunny.js';
 import './Calendar.css'
 
 const Calendar = ({ value, onXChange }) => {
@@ -26,9 +27,7 @@ const Calendar = ({ value, onXChange }) => {
         const data = await res.json()
         return data
     }
-    const [startDate, setStartDate] = useState( ()=> {
-        return 0;
-    })
+    const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD"))
     const deleteTask = async (id) => {
         await fetch(`http://localhost:5000/tasks/${id}`, {
             method: 'DELETE',
@@ -58,7 +57,6 @@ const Calendar = ({ value, onXChange }) => {
         setStartDate(moment().format("YYYY-MM-DD"))
         setCalendar(buildCalendar(value));
     }, [value])
-    
     function getMonthName() {
         for (let i = firstMonth; i <= lastMonth; ++i)
             mon.push(i)
@@ -68,7 +66,7 @@ const Calendar = ({ value, onXChange }) => {
         return value.format("MMM");
     }
     function currYear() {
-        return value.format("YYYY");
+        return value.format("YYYY");  
     }
     function nextMonth() {
         return value.clone().add(1, "month")
@@ -79,15 +77,39 @@ const Calendar = ({ value, onXChange }) => {
     function setMonthName(arg) {
         return value.clone().month(arg)
     }
-    const showDate = (year, month, selectedDate) => {
-        const currDay = [startDate];
-        currDay.sDate = moment([year, month, selectedDate]).format("YYYY-MM-DD").toString()
-        setStartDate(currDay);
+    const showDate = (year, month, date) => {
+        setStartDate(moment([year, month, date]).format("YYYY-MM-DD").toString());
     }
     function isDayAfterStart(nameKey, myArray) {
         for (var i = 0; i < myArray.length; i++) {
             if(myArray[i].sDate <= nameKey && myArray[i].eDate >= nameKey)
                 return true;
+        }
+    }
+    function getTaskIndex(nameKey, myArray) {
+        for (var i = 0; i < myArray.length; i++) {
+            if(myArray[i].sDate <= nameKey && myArray[i].eDate >= nameKey)
+                return myArray[i].text;
+        }
+    }
+    function countTaskIndex(nameKey, myArray) {
+        let taskCount =-1;
+        for (var i = 0; i < myArray.length; i++) {
+            if(myArray[i].sDate <= nameKey && myArray[i].eDate >= nameKey)
+                taskCount++;
+        }
+        if (taskCount < 1)
+            return "";
+        else
+            return "+ " + taskCount + " more";
+    }
+    const svgVariants = {
+        hidden: { rotate: -180,
+        opacity: 0},
+        visible:  {
+            rotate: 0,
+            opacity: 1,
+            transition: { duration: 1}
         }
     }
     return (
@@ -118,20 +140,20 @@ const Calendar = ({ value, onXChange }) => {
                             week.map(day => 
                             <div key={day} 
                                 className={(!(day.clone().month() === value.clone().month())) ? 
-                                    "fill-days" : startDate.sDate === day.clone().format("YYYY-MM-DD") ? 
+                                    "fill-days" : startDate === day.clone().format("YYYY-MM-DD") ? 
                                     (((day.year() === moment().format("YYYY"))&&(day.date()=== moment().date()) && (day.clone().month() === moment().month()))) ? 
                                     "dates today custom-element-bg selected-date " : 'dates selected-date' : (day.year() === moment().year() && day.date()=== moment().date()) && (day.clone().month() === moment().month()) ?
                                     "dates today custom-element-bg" : "dates" } 
                                     onClick={(() => ((day.clone().month() === value.clone().month())) ? showDate(day.year(), day.month(), day.date()): "")}>
-                                <div>  {day.clone().format("D").toString()}</div>{isDayAfterStart(day.format("YYYY-MM-DD").toString(), tasks)? <span>{"\u2B24"}</span> : ''}
+                                <div>{day.clone().format("D").toString()} <Sunny variants ={svgVariants} visibility={isDayAfterStart(day.format("YYYY-MM-DD").toString(), tasks)? 'true' : 'hidden'} height={'14px'} /></div> {getTaskIndex(day.format("YYYY-MM-DD").toString(), tasks)}<p> {countTaskIndex(day.format("YYYY-MM-DD").toString(), tasks)}</p>
                             </div>)
                         }
                         </div>)}
                 </div>
             </div>
           <Tasks tasks={tasks} setTasks={setTasks} startDate={startDate} onDelete={deleteTask} onToggle={toggleReminder}/> 
-          <ExpBar />
-
+          <ExpBar id={2}/>
+          <ExpBar id={1}/>
         </div>
         
     )

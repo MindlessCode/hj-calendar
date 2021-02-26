@@ -1,9 +1,9 @@
 import React from 'react'
 import './ExpBar.css'
 
-const ExpBar = () => {
+const ExpBar = (id) => {
     return (
-        <div className="exp-bar">
+        <div className={"exp-bar-" + id.id}>
         </div>
     )
 }
