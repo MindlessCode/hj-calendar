@@ -14,10 +14,9 @@ export default function buildCalendar(value) {
             );
             //Fill the gap in the panel (Panel can hold a total of 6 rows)
             const weekNum = calendar.length;
-            let weekDays = 7;
             if(end === day.date() && endDay.month() === day.month() && weekNum < totalWeekRows) {
                 let rowsToFill =  totalWeekRows - weekNum;
-                iendDay(rowsToFill * weekDays);
+                iendDay(rowsToFill * 7);
             }
         }
         return calendar;

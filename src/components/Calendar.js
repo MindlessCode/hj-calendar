@@ -9,6 +9,7 @@ import './Calendar.css'
 const Calendar = ({ value, onXChange }) => {
     // Tasks Set-up
     const [tasks, setTasks] = useState([])
+    const [exp, setExp] = useState(10)
     useEffect(()=>{
         const getTasks = async ()=> {
             const tasksFromServer = await fetchTasks()
@@ -71,6 +72,9 @@ const Calendar = ({ value, onXChange }) => {
     function nextMonth() {
         return value.clone().add(1, "month")
     }
+    const testExp=()=> {
+        setExp(moment().clone().date())
+    }
     function prevMonth() {
         return value.clone().subtract(1, "month")
     }
@@ -89,7 +93,7 @@ const Calendar = ({ value, onXChange }) => {
     function getTaskIndex(nameKey, myArray) {
         for (var i = 0; i < myArray.length; i++) {
             if(myArray[i].sDate <= nameKey && myArray[i].eDate >= nameKey)
-                return myArray[i].text;
+                return <ul className="task-list"><li>{myArray[i].text}</li></ul>
         }
     }
     function countTaskIndex(nameKey, myArray) {
@@ -104,10 +108,8 @@ const Calendar = ({ value, onXChange }) => {
             return "+ " + taskCount + " more";
     }
     const svgVariants = {
-        hidden: { rotate: -180,
-        opacity: 0},
+        hidden: {opacity: 0},
         visible:  {
-            rotate: 0,
             opacity: 1,
             transition: { duration: 1}
         }
@@ -128,7 +130,7 @@ const Calendar = ({ value, onXChange }) => {
                         <i className="fas fa-angle-right next" onClick={() => onXChange(nextMonth())}></i>
                     </div>
                     <div className="weekdays custom-element-bg">
-                        <div>SUN</div>
+                        <div onClick={()=>testExp()}>SUN</div>
                         <div>MON</div>
                         <div>TUE</div>
                         <div>WED</div>
@@ -145,15 +147,14 @@ const Calendar = ({ value, onXChange }) => {
                                     "dates today custom-element-bg selected-date " : 'dates selected-date' : (day.year() === moment().year() && day.date()=== moment().date()) && (day.clone().month() === moment().month()) ?
                                     "dates today custom-element-bg" : "dates" } 
                                     onClick={(() => ((day.clone().month() === value.clone().month())) ? showDate(day.year(), day.month(), day.date()): "")}>
-                                <div>{day.clone().format("D").toString()} <Sunny variants ={svgVariants} visibility={isDayAfterStart(day.format("YYYY-MM-DD").toString(), tasks)? 'true' : 'hidden'} height={'14px'} /></div> {getTaskIndex(day.format("YYYY-MM-DD").toString(), tasks)}<p> {countTaskIndex(day.format("YYYY-MM-DD").toString(), tasks)}</p>
+                                <div>{day.clone().format("D").toString()} <Sunny variants ={svgVariants} visibility={isDayAfterStart(day.format("YYYY-MM-DD").toString(), tasks)? 'true' : 'hidden'} height={'14px'} /></div>{getTaskIndex(day.format("YYYY-MM-DD").toString(), tasks)}{countTaskIndex(day.format("YYYY-MM-DD").toString(), tasks)}
                             </div>)
                         }
                         </div>)}
                 </div>
             </div>
           <Tasks tasks={tasks} setTasks={setTasks} startDate={startDate} onDelete={deleteTask} onToggle={toggleReminder}/> 
-          <ExpBar id={2}/>
-          <ExpBar id={1}/>
+          <ExpBar exp1={exp}/>
         </div>
         
     )

@@ -6,6 +6,7 @@ footer {
     min-height: 3rem;
     align-items: center;
     justify-content:space-evenly;
+    z-index: 999;
 }
 .go-today:hover {
     cursor: pointer;

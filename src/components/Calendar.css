@@ -45,20 +45,22 @@ img {
     background:rgb(29, 29, 29);
     border-radius: 0.6rem;
     box-shadow: 0 0.3rem 0.6rem rgb(0, 0, 0);
-    height: 67%;
+    height: 68%;
 }
 .current-month  {
     display: flex;
     justify-content: center;
+    border-style:ridge;
+    border-color: black;
     border-radius: 0.6rem;
     margin-bottom:0.6rem;
     text-transform: uppercase;
 }
 .current-month i, .current-month h1  {
-    margin: 3rem;
+    margin: 3.2rem 4rem;
     font-size: 24px;
 }
-.prev, .next {
+.prev:hover, .next:hover {
     cursor: pointer;
 }
 .weekdays{
@@ -77,27 +79,36 @@ img {
     padding-top: 30px;
     display: grid;
     grid-template-columns:repeat(7, 1fr);
+    
     justify-items: center;
     color:rgb(255, 216, 157);
     text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 }
+.task-list {
+    padding: 0.6rem;
+    font-size: 14px;
+}
 .dates {
-    padding: 1.2rem;
+    overflow: hidden;
+    padding: 0.6rem;
     border-style:ridge;
     border-color:rgb(0, 0, 0);
     border-radius: 0.6rem;
     background:rgb(22, 22, 22);
-    height: 7em;
-    width: 7em;
+    height: 9em;
+    width: 9em;
     user-select: none;
+    font-size: 13px;
 }
 .fill-days {
-    padding: 1.2rem;
+    overflow: hidden;
+    padding: 0.6rem;
     border-style:ridge;
     border-color:rgb(0, 0, 0);
     border-radius: 0.6rem;
-    height: 7em;
-    width: 7em;
+    font-size: 13px;
+    height: 9em;
+    width: 9em;
 }
 .today {
     color: black;

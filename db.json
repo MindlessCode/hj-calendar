@@ -13,6 +13,34 @@
       "eDate": "2021-02-17",
       "reminder": true,
       "id": 2
+    },
+    {
+      "text": "Study - Pointers/ Classes",
+      "sDate": "2021-02-27",
+      "eDate": "2021-03-01",
+      "reminder": true,
+      "id": 3
+    },
+    {
+      "text": "[Optional] - FanFic",
+      "sDate": "2021-02-27",
+      "eDate": "2021-03-01",
+      "reminder": true,
+      "id": 4
+    },
+    {
+      "text": "Change Tasks Panel layout",
+      "sDate": "2021-02-27",
+      "eDate": "2021-03-01",
+      "reminder": true,
+      "id": 5
+    },
+    {
+      "text": "Change Date selectors",
+      "sDate": "2021-03-03",
+      "eDate": "2021-03-03",
+      "reminder": true,
+      "id": 6
     }
   ]
 }
