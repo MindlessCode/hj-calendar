@@ -4,43 +4,78 @@
       "text": "INFO3140 - Exam",
       "sDate": "2021-02-09",
       "eDate": "2021-02-09",
-      "reminder": true,
+      "reminder": false,
       "id": 1
     },
     {
       "text": "INFO3135 - Exam",
       "sDate": "2021-02-17",
       "eDate": "2021-02-17",
-      "reminder": true,
+      "reminder": false,
       "id": 2
     },
     {
       "text": "Study - Pointers/ Classes",
       "sDate": "2021-02-27",
       "eDate": "2021-03-01",
-      "reminder": true,
+      "reminder": false,
       "id": 3
-    },
-    {
-      "text": "[Optional] - FanFic",
-      "sDate": "2021-02-27",
-      "eDate": "2021-03-01",
-      "reminder": true,
-      "id": 4
     },
     {
       "text": "Change Tasks Panel layout",
       "sDate": "2021-02-27",
       "eDate": "2021-03-01",
-      "reminder": true,
+      "reminder": false,
       "id": 5
     },
     {
-      "text": "Change Date selectors",
-      "sDate": "2021-03-03",
-      "eDate": "2021-03-03",
+      "text": "INFO3140 - Exam",
+      "sDate": "2021-03-16",
+      "eDate": "2021-03-16",
       "reminder": true,
-      "id": 6
+      "id": 7
+    },
+    {
+      "text": "INFO3140 - Review",
+      "sDate": "2021-03-07",
+      "eDate": "2021-03-13",
+      "reminder": true,
+      "id": 8
+    },
+    {
+      "text": "INFO3135 - Exam",
+      "sDate": "2021-03-17",
+      "eDate": "2021-03-17",
+      "reminder": true,
+      "id": 9
+    },
+    {
+      "text": "INFO3135 - Review",
+      "sDate": "2021-03-07",
+      "eDate": "2021-03-13",
+      "reminder": true,
+      "id": 10
+    },
+    {
+      "text": "INFO3135 - Project Due",
+      "sDate": "2021-04-04",
+      "eDate": "2021-04-04",
+      "reminder": true,
+      "id": 11
+    },
+    {
+      "text": "Fix Resume",
+      "sDate": "2021-03-08",
+      "eDate": "2021-03-08",
+      "reminder": true,
+      "id": 13
+    },
+    {
+      "text": "INFO3140 Project Due",
+      "sDate": "2021-04-06",
+      "eDate": "2021-04-06",
+      "reminder": true,
+      "id": 14
     }
   ]
 }

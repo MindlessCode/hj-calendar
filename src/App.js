@@ -1,17 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import {  BrowserRouter as Router, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Calendar from './components/Calendar.js';
 import About from './components/About.js';
+import Home from './components/Home.js';
 import './style.css';
-import FooterNav from './components/FooterNav.js';
 
 const App = () => {
-    const styleRef = useRef();
-    function translate() {
-        styleRef.current.classList.toggle('nav-active');
-    }
+ 
     const [value, setValue] = useState(moment());
     return (
         <Router>
@@ -24,9 +21,9 @@ const App = () => {
                     <div className="logo">
                         <h4>HARRY J</h4>
                     </div>
-                    <ul className="nav-links" ref={styleRef}>
+                    <ul className="nav-links" >
                         <li>
-                            <Link to="/Home">Home</Link>
+                            <Link to="/">Home</Link>
                         </li>
                         <li>
                             <Link to="/Calendar">Calendar</Link>
@@ -38,14 +35,8 @@ const App = () => {
                             <Link to="/About">About</Link>
                         </li>
                     </ul>
-                    <div className="burger" onClick={translate}>
-                        <div className="line1"></div>
-                        <div className="line2"></div>
-                        <div className="line3"></div>
-                    </div>
+               
                 </nav>
-                
-                <FooterNav value={value} onChange={setValue} />
                 <Route path='/Calendar' 
                 render={(props) => (
                     <>
@@ -53,6 +44,7 @@ const App = () => {
                     </>
                 )}/>
                 <Route path='/About' component={About} />
+                <Route path='/' exact component={Home} />
             </div>
         </Router>
     );

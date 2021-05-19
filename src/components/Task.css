@@ -1,19 +1,12 @@
 .task-container{
-    position: relative;
-    margin: 5rem;
-    padding: 1.2rem;
-    height: 700px;
-    min-width: 480px;
-    overflow: auto;
-    background: rgb(68, 68, 68);
-    box-shadow: 0rem 0.3rem 0.7rem rgb(7, 7, 7);
+    width: 88%;
+    overflow-x: hidden;
     color:rgb(255, 216, 157);
 }
 .task-container .task {
     background: rgb(255, 216, 157);
     color:rgb(7, 7, 7);
     padding: 10px 20px;
-    align-content: center;
     margin:  5px;
 }
 .task.reminder {
@@ -23,15 +16,13 @@ label {
     color:rgb(255, 216, 157);
 }
 h2 {
-    
     color:rgb(255, 238, 200);
-    display:flex;
+    display:inline-flex;
     margin: .3rem;
 }
-.test2 {
-  display: none;
+.task-list {
+  float: bottom;
 }
-
 .dot {
   margin: 0.6rem 0;
   height: 15px;
@@ -45,9 +36,7 @@ h2 {
     cursor: pointer;
     user-select: none;
 }
-h2 {
-  display: inline-flex;
-}
+
 .sub-btn {
     display: inline-block;
     background: rgb(255, 129, 129);
@@ -64,11 +53,10 @@ h2 {
   background: rgb(255, 129, 129);
   color: #fff;
   border: none;
-  margin: .6px;
+  margin: 1.6px 5px;
   cursor: pointer;
-  float: right;
-  height: 5%;
-  width: 20%;
+  height: 35px;
+  width: 15%;
 }
 .sub-btn:focus, .btn-add-task:focus {
     outline: none;
@@ -118,27 +106,38 @@ select {
   justify-content: space-between;
   padding: 7px;
   margin: 5px;
-  width:15%;
+  width:100px;
   height:40px;
   color:rgb(255, 216, 157);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-width: 2px;
   background-color:rgb(68, 68, 68);
   font-family:Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 12px;
 }
+.start-date {
+  user-select: none;
+  height: 100px;
+  width: 400px;
+  padding: 0.6rem;
+  border: 2px solid rgb(29, 29, 29);
+}
 
-select option    {width: 14em;
+.end-date {
+  user-select: none;
+  height: 100px;
+  width: 400px;
+  padding: 0.6rem;
+  background-color:rgb(29, 29, 29);
+  border: 2px solid rgb(29, 29, 29);
+}
+select option {
+  width: 14em;
   padding: 13em;
   text-indent: 0;
   line-height: 2em;}
 select:focus {
   outline: none;
 }
-
 .form-control-check {
   display: flex;
   align-items: center;

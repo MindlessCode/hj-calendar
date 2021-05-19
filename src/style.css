@@ -12,22 +12,18 @@ body {
     background:rgb(43, 43, 43);
 }
 .wrapper {
-    margin-top:-5rem;
-    justify-items: center;
-    justify-content: center;
     display: grid;
-    grid-template-columns: 1000px 500px;
-    grid-template-rows: 1096px 100px;
+    grid-template-columns:720px 1000px;
 }
 nav {
-    position: -webkit-sticky;
+    position: fixed;
     display:flex;
     justify-content: space-around;
     align-items:center;
-    margin-bottom: 2.6rem;
+    width: 100%;
     min-height: 3rem;
     box-shadow: 5px 10px 10px #000000;
-    z-index: 999;
+    z-index: 99;
 }
 .logo, .logo h4 {
     color: rgb(27, 27, 27);
@@ -52,7 +48,6 @@ nav {
     .wrapper {
         grid-template-columns:repeat(1, 1fr);
         grid-template-rows: 1080px 50px 700px; 
-        
     }
 }
 @media screen and (max-width: 425px) {

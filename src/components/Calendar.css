@@ -1,11 +1,14 @@
 .calendar {
     display:grid;
     justify-content: center;
-    grid-template-rows: 125px 1520px;
+    position:absolute;
+    grid-template-rows: 195px 1520px;
+    height: 100vh;
+    left: 720px;
 }
 .month-select{
     overflow: hidden;
-    margin-top:5rem;
+    margin-top:6rem;
     display:grid;
     grid-template-columns:repeat(12, 80px);
     justify-content: center;
@@ -40,10 +43,9 @@ img {
 }
 .month {
     overflow: hidden;
-    margin-top: -0.8rem;
+    margin-top: -4rem;
     padding: 25px;
     background:rgb(29, 29, 29);
-    dead: 0.6rem;
     box-shadow: 0 0.3rem 0.6rem rgb(0, 0, 0);
     height: 68%;
 }
@@ -52,7 +54,6 @@ img {
     justify-content: center;
     border-style:ridge;
     border-color: black;
-    dead: 0.6rem;
     margin-bottom:0.6rem;
     text-transform: uppercase;
 }
@@ -98,6 +99,63 @@ img {
     user-select: none;
     font-size: 13px;
 }
+.s-current-month  {
+    display: grid;
+    margin-top: 4rem;
+    padding: 1rem;
+    font-size: 12px;
+    grid-template-columns: 200px 40px 40px 40px 40px;
+    align-items: center;
+    text-transform: uppercase;
+}
+.s-current-month i {
+    font-size:16px;
+}
+i:hover {
+    cursor: pointer;
+}
+.s-weeks {
+    display: flex;
+    justify-items: center;
+    color:rgb(255, 216, 157);
+    text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+.date-select{
+    overflow: hidden;
+    padding: 25px;
+    background:rgb(29, 29, 29);
+}
+.s-weekdays{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 20px;
+    justify-items: center;
+    padding: .6rem 0.6rem;
+    font-weight: bold;
+    font-size: 15px;
+}
+.s-dates {
+    overflow: hidden;
+    background:rgb(22, 22, 22);
+    height: 5em;
+    width: 5em;
+    border-style:ridge;
+    border-color:rgb(22, 22, 22);
+    user-select: none;
+    font-size: 13px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.s-dates:hover {
+    border-style:groove;
+    border-color: salmon;
+    cursor: pointer;
+}
+.s-prev:hover, .s-next:hover {
+    cursor: pointer;
+}
 .fill-days {
     overflow: hidden;
     padding: 0.6rem;
@@ -110,14 +168,26 @@ img {
 .today {
     color: black;
 }
+.s-today {
+    color:rgb(255, 216, 157);
+}
 .dates:hover:not(.selected-date) {
     border-color:rgb(255, 243, 177);
     cursor: pointer;
 }
-.selected-date {
+.selected-date, .s-selected-date {
     border-color:salmon;
 }
 
+.side-pan {
+    display: grid;
+    position: fixed;
+    grid-template-rows: 600px 700px;
+    height: 100%;
+    width: 525px;
+    justify-items: center;
+    background:rgb(29, 29, 29);
+}
 @media screen and (max-width: 768px) {
 
     .calendar {
@@ -133,7 +203,7 @@ img {
     .dates, .fill-days {
         margin: 0.2rem;
         width: calc(600px/7);
-        height: calc(500px/6)
+        height: calc(500px/6);
     }
 
 }

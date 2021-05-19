@@ -6,14 +6,15 @@
     background: peachpuff;
     width: 263px;
     height: 26px;
-    top: 3.2rem;
+    top: 3.5rem;
     align-items: center;
     right: 0;
+    z-index: 888;
 }
 .exp-bar-1 {
     margin: 2px;
     position: relative;
-    z-index: 99;
+    z-index: 999;
     border-radius: 0.6rem;
     background: linear-gradient(to right, rgb(228, 154, 141), salmon);
     height: 16px;
