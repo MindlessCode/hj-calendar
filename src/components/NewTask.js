@@ -66,13 +66,13 @@ const NewTask = ({ onAdd, selectedDate }) => {
 
         }
     }
-    function isValidDate() {
+    // function isValidDate() {
 
-        if (moment(yearSelect + '-' + monthSelect + '-' + daySelect, "YYYY-MM-DD") > moment(endYearSelect + '-' + endMonthSelect + '-' + endDaySelect, "YYYY-MM-DD")) {
-            return true;
-        }
-        return false;
-    }
+    //     if (moment(yearSelect + '-' + monthSelect + '-' + daySelect, "YYYY-MM-DD") > moment(endYearSelect + '-' + endMonthSelect + '-' + endDaySelect, "YYYY-MM-DD")) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
     const onSubmit = (e) => {
         e.preventDefault()
         if (!text) {
@@ -136,15 +136,15 @@ const NewTask = ({ onAdd, selectedDate }) => {
                     <label>
                         <span>End</span>
                     </label>
-                    <select className='select-month' style={isValidDate() ? { textDecoration: "line-through", color: "red" } : { color: "" }} value={endMonthSelect ? endMonthSelect : 'none'} onChange={(e) => setEndMonthSelect(e.target.value)}>
+                    <select className='select-month' /*style={isValidDate() ? { textDecoration: "line-through", color: "red" } : { color: "" }} value={endMonthSelect ? endMonthSelect : 'none'}*/ onChange={(e) => setEndMonthSelect(e.target.value)}>
                         <option value="">MONTH</option>
                         {emonths.map(month => (<option key={month} value={month.format("MM")}>{month.format("MM")}</option>))}
                     </select>
-                    <select className='select-day' style={isValidDate() ? { textDecoration: "line-through", color: "red" } : { color: "" }} value={endDaySelect ? endDaySelect : 'none'} onChange={(e) => setEndDaySelect(e.target.value)}>
+                    <select className='select-day' /*style={isValidDate() ? { textDecoration: "line-through", color: "red" } : { color: "" }} value={endDaySelect ? endDaySelect : 'none'}*/ onChange={(e) => setEndDaySelect(e.target.value)}>
                         <option value="">DAY</option>
                         {edates.map(day => (<option key={day} value={day.format("DD")}>{day.format("DD")}</option>))}
                     </select>
-                    <select className='select-year' style={isValidDate() ? { textDecoration: "line-through", color: "red" } : { color: "" }} value={endYearSelect ? endYearSelect : 'none'} onChange={(e) => setEndYearSelect(e.target.value)}>
+                    <select className='select-year' /*style={isValidDate() ? { textDecoration: "line-through", color: "red" } : { color: "" }} value={endYearSelect ? endYearSelect : 'none'}*/onChange={(e) => setEndYearSelect(e.target.value)}>
                         <option value="">YEAR</option>
                         {selectEYears.map(year => (<option key={year} value={year}>{year}</option>))}
                     </select>
