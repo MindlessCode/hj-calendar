@@ -39,7 +39,7 @@
       "text": "INFO3140 - Review",
       "sDate": "2021-03-07",
       "eDate": "2021-03-13",
-      "reminder": true,
+      "reminder": false,
       "id": 8
     },
     {
@@ -53,7 +53,7 @@
       "text": "INFO3135 - Review",
       "sDate": "2021-03-07",
       "eDate": "2021-03-13",
-      "reminder": true,
+      "reminder": false,
       "id": 10
     },
     {
@@ -67,7 +67,7 @@
       "text": "Fix Resume",
       "sDate": "2021-03-08",
       "eDate": "2021-03-08",
-      "reminder": true,
+      "reminder": false,
       "id": 13
     },
     {
@@ -76,6 +76,13 @@
       "eDate": "2021-04-06",
       "reminder": true,
       "id": 14
+    },
+    {
+      "text": "Relax",
+      "sDate": "2021-06-25",
+      "eDate": "2021-06-25",
+      "reminder": true,
+      "id": 15
     }
   ]
 }
