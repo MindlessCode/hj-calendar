@@ -1,255 +1,70 @@
-.calendar {
-    display:grid;
-    justify-content: center;
-    position:absolute;
-    grid-template-rows: 195px 1520px;
-    height: 100vh;
-    left: 720px;
+.s-current-month {
+  display: grid;
+  margin-top: 5rem;
+  padding: 25px;
+  font-size: 16px;
+  border-top: solid;
+  border-right: 0.5px solid;
+  border-left: 0.5px solid;
+  grid-template-columns: 200px 40px 40px 40px 40px;
+  align-items: center;
+  text-transform: uppercase;
 }
-.month-select{
-    overflow: hidden;
-    margin-top:6rem;
-    display:grid;
-    grid-template-columns:repeat(12, 80px);
-    justify-content: center;
-    color:rgb(255, 216, 157);
-}
-.month-select > div {
-    padding: 0.5rem;
-    width: 100%;
-    border-width: 1px;
-    text-align: center;
-    text-transform:uppercase;
-}
-.month-select:hover{
-    cursor:pointer;
-}
-.selected-month {
-    background:rgb(29, 29, 29);
-    border-style:groove;
-    border-top-left-radius: 0.6rem;
-    border-top-right-radius: 0.6rem;
-}
-img {
-    position: absolute;
-}
-.btn-today {
-    background:rgb(255, 216, 157);
-    padding: 0.2rem;
-    user-select: none;
-}
-.btn-today:hover {
-    cursor: pointer;
-}
-.month {
-    overflow: hidden;
-    margin-top: -4rem;
-    padding: 25px;
-    background:rgb(29, 29, 29);
-    box-shadow: 0 0.3rem 0.6rem rgb(0, 0, 0);
-    height: 68%;
-}
-.current-month  {
-    display: flex;
-    justify-content: center;
-    border-style:ridge;
-    border-color: black;
-    margin-bottom:0.6rem;
-    text-transform: uppercase;
-}
-.current-month i, .current-month h1  {
-    margin: 3.2rem 4rem;
-    font-size: 24px;
-}
-.prev:hover, .next:hover {
-    cursor: pointer;
-}
-.weekdays{
-    padding: 0.2rem .7rem;
-    display: grid;
-    grid-template-columns:repeat(7, 1fr);
-    gap: 2rem;
-    justify-content: center;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-}
-.weeks {
-    margin: -10px -10px;
-    padding-top: 30px;
-    display: grid;
-    grid-template-columns:repeat(7, 1fr);
-    
-    justify-items: center;
-    color:rgb(255, 216, 157);
-    text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-}
-.task-list {
-    padding: 0.6rem;
-    font-size: 14px;
-}
-.dates {
-    overflow: hidden;
-    padding: 0.6rem;
-    border-style:ridge;
-    border-color:rgb(0, 0, 0);
-    background:rgb(22, 22, 22);
-    height: 9em;
-    width: 9em;
-    user-select: none;
-    font-size: 13px;
-}
-.s-current-month  {
-    display: grid;
-    margin-top: 4rem;
-    padding: 1rem;
-    font-size: 12px;
-    grid-template-columns: 200px 40px 40px 40px 40px;
-    align-items: center;
-    text-transform: uppercase;
-}
-.s-current-month i {
-    font-size:16px;
+.date-select {
+  max-width: 455px;
 }
 i:hover {
-    cursor: pointer;
+  cursor: pointer;
+  color: salmon;
 }
 .s-weeks {
-    display: flex;
-    justify-items: center;
-    color:rgb(255, 216, 157);
-    text-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  border-right: 0.5px solid;
+  border-left: 0.5px solid;
+  display: flex;
+  justify-items: center;
 }
-.date-select{
-    overflow: hidden;
-    padding: 25px;
-    background:rgb(29, 29, 29);
-}
-.s-weekdays{
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 20px;
-    justify-items: center;
-    padding: .6rem 0.6rem;
-    font-weight: bold;
-    font-size: 15px;
+
+.s-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 20px;
+  justify-items: center;
+  padding: 0.6rem 0.6rem;
+  border: 0.5px solid;
+  font-weight: bold;
+  font-size: 15px;
 }
 .s-dates {
-    overflow: hidden;
-    background:rgb(22, 22, 22);
-    height: 5em;
-    width: 5em;
-    border-style:ridge;
-    border-color:rgb(22, 22, 22);
-    user-select: none;
-    font-size: 13px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+  overflow: hidden;
+  height: 5em;
+  width: 5em;
+  user-select: none;
+  font-size: 13px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid;
 }
 .s-dates:hover {
-    border-style:groove;
-    border-color: salmon;
-    cursor: pointer;
+  border-style: groove;
+  cursor: pointer;
+  border: 2px solid salmon;
+  color: salmon;
 }
-.s-prev:hover, .s-next:hover {
-    cursor: pointer;
+.s-prev:hover,
+.s-next:hover {
+  cursor: pointer;
+  color: salmon;
 }
-.fill-days {
-    overflow: hidden;
-    padding: 0.6rem;
-    border-style:ridge;
-    border-color:rgb(0, 0, 0);
-    font-size: 13px;
-    height: 9em;
-    width: 9em;
-}
+
+.s-today,
 .today {
-    color: black;
-}
-.s-today {
-    color:rgb(255, 216, 157);
-}
-.dates:hover:not(.selected-date) {
-    border-color:rgb(255, 243, 177);
-    cursor: pointer;
-}
-.selected-date, .s-selected-date {
-    border-color:salmon;
+  color: salmon;
 }
 
-.side-pan {
-    display: grid;
-    position: fixed;
-    grid-template-rows: 600px 700px;
-    height: 100%;
-    width: 525px;
-    justify-items: center;
-    background:rgb(29, 29, 29);
-}
-@media screen and (max-width: 768px) {
-
-    .calendar {
-        margin: 25px;
-    }
-    .month-select {
-        grid-template-columns:repeat(12, calc(700px/12));
-        font-size: 14px;
-    }
-    .month {
-        height: 860px;    
-    }
-    .dates, .fill-days {
-        margin: 0.2rem;
-        width: calc(600px/7);
-        height: calc(500px/6);
-    }
-
-}
-@media screen and (max-width: 425px) {
-
-    .calendar {
-        margin: 25px;
-    }
-    .month-select {
-        margin-top:90px;
-        grid-template-columns:repeat(12, calc(357px/12));
-        font-size: 9px;
-        padding: 0;
-    }
-    .selected-month {
-        border-style: none;
-        background: none;
-        text-decoration: underline;
-        font-weight: bold;
-    }
-    .month {
-        padding: 0.6rem;
-        height: 660px;    
-        align-content: center;
-    }
-    .current-month {
-        align-items: center;
-        height: 100px;
-    }
-    .current-month h1 {
-        font-size: 18px;
-    }
-    .weekdays {
-        grid-template-columns:repeat(7, 50px);
-        
-    }
-    .weeks {
-        margin: -20px -5px;
-        
-    }
-    .dates, .fill-days {
-        border-style: none;
-        background: none;
-        margin: 0.2rem;
-        width: calc(357px/9);
-        height: calc(860px/12);
-        font-size: 11px;
-    }
+.selected-date,
+.s-selected-date {
+  border: 2px solid salmon;
+  color: salmon;
 }

@@ -1,162 +1,297 @@
-import React, { useState } from 'react'
-import moment from 'moment'
-import './Task.css';
+import React, { useState, useReducer } from "react";
+import moment from "moment";
+import { ThemeProvider } from "@mui/material/styles";
+import {
+  TextField,
+  MenuItem,
+  Box,
+  IconButton,
+  InputAdornment,
+  Card,
+  CardActions,
+  CardContent,
+} from "@mui/material";
 
-const NewTask = ({ onAdd, selectedDate }) => {
-    const [text, setText] = useState('')
-    const [monthSelect, setMonthSelect] = useState(moment().clone().format("MM"))
-    const [daySelect, setDaySelect] = useState(moment().clone().format("DD"))
-    const [yearSelect, setYearSelect] = useState(moment().clone().format("YYYY"))
-    const [endMonthSelect, setEndMonthSelect] = useState(moment().clone().format("MM"))
-    const [endDaySelect, setEndDaySelect] = useState(moment().clone().format("DD"))
-    const [endYearSelect, setEndYearSelect] = useState(moment().clone().format("YYYY"))
-    const [reminder, setReminder] = useState(false)
-    //year drop down
-    var startYear = moment().clone().year()
-    const endYear = moment().clone().year() + 10
-    const selectYears = [];
-    const selectEYears = [];
-    while (startYear <= endYear) {
-        selectYears.push(startYear)
-        selectEYears.push(startYear)
-        startYear++;
-    }
-    //month drop down
-    const startMonth = moment().clone().startOf("year")
-    const endMonth = moment().clone().endOf("year")
-    const startEMonth = moment().clone().startOf("year")
-    const endEMonth = moment().clone().endOf("year")
-    const mon = startMonth.subtract(1, "month")
-    const monE = startEMonth.subtract(1, "month")
-    const months = [];
-    const emonths = [];
-    while (startMonth.isBefore(endMonth, "month")) {
-        months.push(mon.add(1, "month").clone())
-    }
-    while (startEMonth.isBefore(endEMonth, "month")) {
-        emonths.push(monE.add(1, "month").clone())
-    }
-    //day drop down
-    const startEDay = moment(yearSelect + '-' + monthSelect, "YYYY-MM").clone().startOf("month");
-    const lastEDay = moment(yearSelect + '-' + monthSelect, "YYYY-MM").clone().endOf("month");
-    const test = startEDay.subtract(1, "day")
-    const dates = [];
-    while (startEDay.isBefore(lastEDay, "day")) {
-        dates.push(test.add(1, "day").clone())
-    }
-    const startEDay2 = moment(endYearSelect + '-' + endMonthSelect, "YYYY-MM").clone().startOf("month");
-    const lastEDay2 = moment(endYearSelect + '-' + endMonthSelect, "YYYY-MM").clone().endOf("month");
-    const test2 = startEDay2.subtract(1, "day")
-    const edates = []
-    while (startEDay2.isBefore(lastEDay2, "day")) {
-        edates.push(test2.add(1, "day").clone())
-    }
-    //time drop down
-    const selectStartHour = []
-    for (let k = 1; k <= 12; ++k) {
-        selectStartHour.push(moment(k, "hh").clone())
-    }
-    const selectStartMinute = []
-    for (let k = 0; k <= 59; ++k) {
-        if (k <= 9) {
-            selectStartMinute.push(moment('0' + k, "mm").clone())
-        }
-        else {
-            selectStartMinute.push(moment(k, "mm").clone())
+import { DataGrid } from "@mui/x-data-grid";
+import AddIcon from "@mui/icons-material/Add";
+import NewStory from "./NewStory.js";
+import "./Task.scss";
+import theme from "../theme";
 
-        }
-    }
-    // function isValidDate() {
+const NewTask = ({ onAdd }) => {
+  const initialState = {
+    name: "",
+    description: "",
+    startYear: moment().clone().year(),
+    startMonth: moment().format("MM"),
+    startDay: moment().format("DD"),
+    storyPointHours: 0,
+    stories: [],
+  };
+  const reducer = (state, newState) => ({ ...state, ...newState });
+  const [state, setState] = useReducer(reducer, initialState);
+  const columns = [
+    {
+      field: "portion",
+      headerName: "Portion",
+      width: 180,
+      preProcessEditCellProps: (params) => {
+        const index = state.stories.findIndex((s) => s.id === params.id);
+        setState({
+          stories: [
+            ...state.stories.slice(0, index),
+            {
+              ...state.stories[index],
+              portion: params.props.value,
+            },
+            ...state.stories.slice(index + 1),
+          ],
+        });
+        const hasError = !params.props.value;
+        return { ...params.props, error: hasError };
+      },
+      editable: true,
+      sortable: false,
+    },
 
-    //     if (moment(yearSelect + '-' + monthSelect + '-' + daySelect, "YYYY-MM-DD") > moment(endYearSelect + '-' + endMonthSelect + '-' + endDaySelect, "YYYY-MM-DD")) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
-    const onSubmit = (e) => {
-        e.preventDefault()
-        if (!text) {
-            document.getElementById("task-error").innerHTML = "Please enter a task name"
-            return
-        }
-        else
-            document.getElementById("task-error").innerHTML = ""
+    {
+      field: "priority",
+      headerName: "Priority",
+      type: "singleSelect",
+      valueOptions: ["High", "Medium", "Low"],
+      editable: true,
+      width: 180,
+      preProcessEditCellProps: (params) => {
+        const index = state.stories.findIndex((s) => s.id === params.id);
+        setState({
+          stories: [
+            ...state.stories.slice(0, index),
+            {
+              ...state.stories[index],
+              priority: params.props.value,
+            },
+            ...state.stories.slice(index + 1),
+          ],
+        });
+        const hasError = !params.props.value;
+        return { ...params.props, error: hasError };
+      },
+      sortable: false,
+    },
+    {
+      field: "storyPoints",
+      headerName: "Story Points",
+      type: "number",
+      preProcessEditCellProps: (params) => {
+        const index = state.stories.findIndex((s) => s.id === params.id);
+        setState({
+          stories: [
+            ...state.stories.slice(0, index),
+            {
+              ...state.stories[index],
+              storyPoints: params.props.value,
+            },
+            ...state.stories.slice(index + 1),
+          ],
+        });
+        const hasError = !params.props.value;
+        return { ...params.props, error: hasError };
+      },
+      editable: true,
+      sortable: false,
+    },
+  ];
 
-        if (isValidDate()) {
-            document.getElementById("error-div").innerHTML = "Start date must be before End date"
-            return
-        }
-        else {
-            document.getElementById("error-div").innerHTML = ""
-        }
-        if (endYearSelect === '' || endMonthSelect === '' || endDaySelect === '') {
-            onAdd({ text, sDate: yearSelect + '-' + monthSelect + '-' + daySelect, eDate: yearSelect + '-' + monthSelect + '-' + daySelect, reminder })
-            return
-        }
-        onAdd({ text, sDate: yearSelect + '-' + monthSelect + '-' + daySelect, eDate: endYearSelect + '-' + endMonthSelect + '-' + endDaySelect, reminder })
+  //year drop down
+  var startYear = moment().clone().year();
+  const endYear = moment().clone().year() + 10;
+  const SelectYears = [];
+  const SelectEYears = [];
+  while (startYear <= endYear) {
+    SelectYears.push(startYear);
+    SelectEYears.push(startYear);
+    startYear++;
+  }
+  //month drop down
+  const startMonth = moment().clone().startOf("year");
+  const endMonth = moment().clone().endOf("year");
+  const mon = startMonth.subtract(1, "month");
+  const months = [];
+  while (startMonth.isBefore(endMonth, "month")) {
+    months.push(mon.add(1, "month").clone());
+  }
 
-        setText('')
-        setMonthSelect(moment().clone().format("MM"))
-        setDaySelect(moment().clone().format("DD"))
-        setYearSelect(moment().clone().format("YYYY"))
-        setEndMonthSelect('')
-        setEndDaySelect('')
-        setEndYearSelect('')
-        setReminder(false)
-    }
+  //day drop down
+  const startEDay = moment(state.startYear + "-" + state.startMonth, "YYYY-MM")
+    .clone()
+    .startOf("month");
+  const lastEDay = moment(state.startYear + "-" + state.startMonth, "YYYY-MM")
+    .clone()
+    .endOf("month");
+  const test = startEDay.subtract(1, "day");
+  const dates = [];
+  while (startEDay.isBefore(lastEDay, "day")) {
+    dates.push(test.add(1, "day").clone());
+  }
+  const [addStory, setAddStory] = useState(false);
+  const handleStories = (s) => {
+    setState({ stories: [...state.stories, s] });
+  };
 
-    const [startDate, setStartDate] = useState(false)
-    const [endDate, setEndDate] = useState(false)
-    return (
-        <form className='new-task-form' onSubmit={onSubmit}>
-            <div className='form-control' >
-                <label>Task</label>
-                <input type='text' value={text} placeholder='Add New Task' onChange={(e) => setText(e.target.value)} />
-                <div id='task-error' style={{ color: "red" }}></div>
-            </div>
-            <div className='form-control'>
-                <div className="start-date" style={startDate? {borderColor: 'salmon'} : {borderColor:""}} onClick={()=>{setStartDate(!startDate); endDate? setEndDate(!endDate): setEndDate(endDate)}}>
-                    <label>
-                        <span>Start</span>
-                    </label>
-                    <select className='select-month' defaultValue={monthSelect ? monthSelect : 'none'} onChange={(e) => setMonthSelect(e.target.value)}>
-                        <option value="">MONTH</option>
-                        {months.map(month => (<option key={month} value={month.format("MM")}>{month.clone().format("MM")}</option>))}
-                    </select>
-                    <select className='select-day' value={daySelect ? daySelect : 'none'} onChange={(e) => setDaySelect(e.target.value)}>
-                        <option value="">DAY</option>
-                        {dates.map(day => (<option key={day} value={day.format("DD")}>{day.format("DD")}</option>))}
-                    </select>
-                    <select className='select-year' value={yearSelect ? yearSelect : 'none'} onChange={(e) => setYearSelect(e.target.value)}>
-                        <option value="">YEAR</option>
-                        {selectYears.map(year => (<option key={year} value={year}>{year}</option>))}
-                    </select>
+  const onAddStory = () => {
+    onAdd({
+      name: state.name,
+      description: state.description,
+      startDate:
+        state.startYear + "-" + state.startMonth + "-" + state.startDay,
+      storyPointHours: state.storyPointHours,
+      stories: state.stories,
+    });
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Card>
+        <CardContent
+          component="form"
+          style={{
+            backgroundColor: theme.palette.secondary.dark,
+          }}
+        >
+          <CardContent
+            style={{
+              display: "flex",
+            }}
+            sx={{
+              "& .MuiTextField-root": { mt: 1.5, mr: 1 },
+            }}
+          >
+            <Box sx={{ display: "block" }}>
+              <TextField
+                label="Project Name"
+                defaultValue={""}
+                onChange={(e) => setState({ name: e.target.value })}
+              />
+              <div id="task-error" style={{ color: "red" }}></div>
+
+              <TextField
+                select
+                label="Month"
+                value={state.startMonth}
+                onChange={(e) => setState({ startMonth: e.target.value })}
+              >
+                <MenuItem disabled={true} value="">
+                  MONTH
+                </MenuItem>
+                {months.map((month) => (
+                  <MenuItem key={month} value={month.format("MM")}>
+                    {month.clone().format("MM")}
+                  </MenuItem>
+                ))}
+              </TextField>
+
+              <TextField
+                select
+                label="Day"
+                value={state.startDay}
+                onChange={(e) => setState({ startDay: e.target.value })}
+              >
+                <MenuItem value="" disabled={true}>
+                  DAY
+                </MenuItem>
+                {dates.map((day) => (
+                  <MenuItem key={day} value={day.format("DD")}>
+                    {day.format("DD")}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                label="Year"
+                select
+                value={state.startYear}
+                onChange={(e) => setState({ startYear: e.target.value })}
+              >
+                <MenuItem value="" disabled={true}>
+                  YEAR
+                </MenuItem>
+                {SelectYears.map((year) => (
+                  <MenuItem key={year} value={year}>
+                    {year}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Box>
+            <Box sx={{ display: "block" }}>
+              <TextField
+                multiline
+                rows={4}
+                label="Description"
+                defaultValue={""}
+                onChange={(e) => setState({ description: e.target.value })}
+              />
+            </Box>
+            <Box sx={{ display: "block" }}>
+              <TextField
+                type="number"
+                label="Hours / Story Point"
+                defaultValue="0"
+                sx={{ width: "25ch" }}
+                size="small"
+                onChange={(e) => setState({ storyPointHours: e.target.value })}
+                InputProps={{
+                  inputProps: { min: 0 },
+                  endAdornment: (
+                    <InputAdornment position="end">Hr</InputAdornment>
+                  ),
+                }}
+                variant="outlined"
+              />
+            </Box>
+          </CardContent>
+          <CardContent>
+            <Box>
+              <CardActions>
+                <IconButton
+                  color="primary"
+                  disableRipple
+                  onClick={(el) => setAddStory(!addStory)}
+                >
+                  <AddIcon
+                    className={addStory ? "add-button-rotated" : "add-button"}
+                  />
+                </IconButton>
+              </CardActions>
+              {addStory && (
+                <NewStory
+                  stories={state.stories}
+                  newStory={handleStories}
+                ></NewStory>
+              )}
+            </Box>
+            {state.stories.length !== 0 ? (
+              <Box>
+                <div style={{ height: 300, width: "100%" }}>
+                  <DataGrid
+                    hideFooter={true}
+                    disableColumnMenu={true}
+                    rows={state.stories}
+                    columns={columns}
+                    experimentalFeatures={{ newEditingApi: true }}
+                  />
                 </div>
-                <div className="end-date" style={endDate? {borderColor: 'salmon'} : {borderColor:""}} onClick={()=>{setEndDate(!endDate); startDate? setStartDate(!startDate): setStartDate(startDate)}}>
-                    <label>
-                        <span>End</span>
-                    </label>
-                    <select className='select-month' /*style={isValidDate() ? { textDecoration: "line-through", color: "red" } : { color: "" }} value={endMonthSelect ? endMonthSelect : 'none'}*/ onChange={(e) => setEndMonthSelect(e.target.value)}>
-                        <option value="">MONTH</option>
-                        {emonths.map(month => (<option key={month} value={month.format("MM")}>{month.format("MM")}</option>))}
-                    </select>
-                    <select className='select-day' /*style={isValidDate() ? { textDecoration: "line-through", color: "red" } : { color: "" }} value={endDaySelect ? endDaySelect : 'none'}*/ onChange={(e) => setEndDaySelect(e.target.value)}>
-                        <option value="">DAY</option>
-                        {edates.map(day => (<option key={day} value={day.format("DD")}>{day.format("DD")}</option>))}
-                    </select>
-                    <select className='select-year' /*style={isValidDate() ? { textDecoration: "line-through", color: "red" } : { color: "" }} value={endYearSelect ? endYearSelect : 'none'}*/onChange={(e) => setEndYearSelect(e.target.value)}>
-                        <option value="">YEAR</option>
-                        {selectEYears.map(year => (<option key={year} value={year}>{year}</option>))}
-                    </select>
-                </div>
-                <div id="error-div" style={{ color: 'red' }}></div>
-            </div>
-            <div className='form-control form-control-check'>
-                <label>Set Reminder</label>
-                <input type='checkbox' checked={reminder} value={reminder} onChange={(e) => setReminder(e.currentTarget.checked)} />
-            </div>
-            <input type="submit" value="Submit" className="btn-block sub-btn"></input>
-        </form>
-    )
-}
-export default NewTask
+              </Box>
+            ) : (
+              ""
+            )}
+          </CardContent>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <IconButton color="primary" disableRipple onClick={onAddStory}>
+              CREATE PROJECT
+            </IconButton>
+          </Box>
+        </CardContent>
+      </Card>
+    </ThemeProvider>
+  );
+};
+export default NewTask;

@@ -1,12 +1,24 @@
-import {FaTimes} from 'react-icons/fa'
-const Task = ({taskL, selectedDate, onDelete, onToggle}) => {
-    return (
-        (taskL.sDate<=selectedDate && taskL.eDate>=selectedDate)?
-        <div className={`task ${taskL.reminder ? 'reminder' : ''}`} onDoubleClick={()=> onToggle(taskL.id)}>
-            <h3>{taskL.text}  <FaTimes style={{ color: 'red', justifyItems: 'right', cursor: 'pointer'}} onClick={()=>onDelete(taskL.id)}/></h3>
-            <p>Starts: {taskL.sDate}</p>
-            <p>Ends: {taskL.eDate}</p>
-        </div>: ""
-    )
-}
-export default Task
+import { ThemeProvider } from "@mui/material/styles";
+import { Box, Paper } from "@mui/material";
+
+import theme from "../theme";
+const Task = ({ taskL }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Paper
+        className="task"
+        elevation={3}
+        style={{
+          backgroundColor: theme.palette.secondary.dark,
+          color: theme.palette.secondary.light,
+        }}
+      >
+        <Box>
+          <div className="task-title">{taskL.name}</div>
+          <div>Starts: {taskL.startDate}</div>
+        </Box>
+      </Paper>
+    </ThemeProvider>
+  );
+};
+export default Task;
