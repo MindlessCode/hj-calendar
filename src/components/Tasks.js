@@ -3,7 +3,7 @@ import Task from "./Task";
 import NewTask from "./NewTask.js";
 import "./Task.scss";
 import { ThemeProvider } from "@mui/material/styles";
-import { Box, Button } from "@mui/material";
+import { Box, IconButton, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import MinusIcon from "@mui/icons-material/Remove";
 import theme from "../theme";
@@ -59,13 +59,22 @@ const Tasks = ({ tasks, setTasks, selectedDate, onDelete, onToggle }) => {
       <div className="project-container">
         <div className="add-task" style={{ display: "flex" }}>
           <Box mt={10} ml={1}>
-            <Button
-              className="btn-add-task"
-              variant="outlined"
-              onClick={() => setShowAddTask(!showAddTask)}
-            >
-              {showAddTask ? <MinusIcon size={50} /> : <AddIcon size={50} />}
-            </Button>
+            {showAddTask ? (
+              <Button
+                variant="outlined"
+                onClick={() => setShowAddTask(!showAddTask)}
+              >
+                <MinusIcon size={50} />
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                onClick={() => setShowAddTask(!showAddTask)}
+                startIcon={<AddIcon />}
+              >
+                ADD PROJECT
+              </Button>
+            )}
           </Box>
           <div className="new-task">
             {showAddTask && (

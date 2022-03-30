@@ -20,24 +20,22 @@ const App = () => {
           />
           <nav className="custom-element-bg">
             <div className="logo">
-              <h4>HARRY J</h4>
+              <h4>Cowporation</h4>
             </div>
             <ul className="nav-links">
               <li>
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/Calendar">Calendar</Link>
-              </li>
-              <li>
                 <Link to="/Projects">Projects</Link>
               </li>
+
               <li>
                 <Link to="/About">About</Link>
               </li>
             </ul>
           </nav>
-          <Route path="/Calendar" component={Calendar} />
+          <Route path="/Projects" component={Calendar} />
           <Route path="/About" component={About} />
           <Route path="/" exact component={Home} />
         </Router>

@@ -5,6 +5,7 @@ import {
   TextField,
   MenuItem,
   Box,
+  Button,
   IconButton,
   InputAdornment,
   Card,
@@ -285,9 +286,15 @@ const NewTask = ({ onAdd }) => {
             )}
           </CardContent>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <IconButton color="primary" disableRipple onClick={onAddStory}>
+            <Button
+              size="large"
+              variant="outlined"
+              color="primary"
+              disableRipple
+              onClick={onAddStory}
+            >
               CREATE PROJECT
-            </IconButton>
+            </Button>
           </Box>
         </CardContent>
       </Card>
