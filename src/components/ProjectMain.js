@@ -4,31 +4,28 @@ import { Box, Card, CardContent, Paper } from "@mui/material";
 
 import moment from "moment";
 import buildCalendar from "./buildCal";
-import "./Calendar.css";
+import "./projectmain.css";
 import theme from "../theme";
 
-import Tasks from "./Tasks.js";
-const Calendar = () => {
-  // Tasks Set-up
-  const [miniCalendar, setMiniCalendar] = useState([]);
-  const [val, setVal] = useState(moment());
-  const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-    console.log(tasks);
+import Projects from "./Projects.js";
 
+const ProjectMain = () => {
+  const [miniCalendar, setMiniCalendar] = useState([]);
+  const [calendar, setCalendar] = useState(moment());
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
     let resArr = [];
-    //fetch tasks
-    const fetchTasks = async () => {
+    const fetchProjects = async () => {
       try {
         let res = await fetch("http://localhost:5000/project");
         let json = await res.json();
         resArr = json.projects;
-        setTasks(resArr);
+        setProjects(resArr);
       } catch (error) {
         console.log(`Problem loading projects - ${error.message}`);
       }
     };
-    fetchTasks();
+    fetchProjects();
   }, []);
 
   // Calendar Set-up
@@ -38,30 +35,29 @@ const Calendar = () => {
 
   // mini Calendar
   function currSMonthName() {
-    return val.format("MMM");
+    return calendar.format("MMM");
   }
   function currSYear() {
-    return val.format("YYYY");
+    return calendar.format("YYYY");
   }
   function nextSMonth() {
-    return val.clone().add(1, "month");
+    return calendar.clone().add(1, "month");
   }
   function prevSMonth() {
-    return val.clone().subtract(1, "month");
+    return calendar.clone().subtract(1, "month");
   }
   function nextSYear() {
-    return val.clone().add(1, "year");
+    return calendar.clone().add(1, "year");
   }
   function prevSYear() {
-    return val.clone().subtract(1, "year");
+    return calendar.clone().subtract(1, "year");
   }
-  // Others
   const showDate = (year, month, date) => {
     setSelectedDate(moment([year, month, date]).clone().format("YYYY-MM-DD"));
   };
   useEffect(() => {
-    setMiniCalendar(buildCalendar(val));
-  }, [val]);
+    setMiniCalendar(buildCalendar(calendar));
+  }, [calendar]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,20 +72,20 @@ const Calendar = () => {
                 <i
                   className="fa fa-angle-double-left"
                   aria-hidden="true"
-                  onClick={() => setVal(prevSYear())}
+                  onClick={() => setCalendar(prevSYear())}
                 ></i>
                 <i
                   className="fas fa-angle-left s-prev"
-                  onClick={() => setVal(prevSMonth())}
+                  onClick={() => setCalendar(prevSMonth())}
                 ></i>
                 <i
                   className="fas fa-angle-right s-next"
-                  onClick={() => setVal(nextSMonth())}
+                  onClick={() => setCalendar(nextSMonth())}
                 ></i>
                 <i
                   className="fa fa-angle-double-right"
                   aria-hidden="true"
-                  onClick={() => setVal(nextSYear())}
+                  onClick={() => setCalendar(nextSYear())}
                 ></i>
               </div>
               <div className="s-weekdays ">
@@ -108,14 +104,14 @@ const Calendar = () => {
                       key={day2}
                       className={
                         selectedDate === day2.clone().format("YYYY-MM-DD")
-                          ? day2.year() === moment().format("YYYY") &&
+                          ? day2.year() === moment().year() &&
                             day2.date() === moment().date() &&
-                            day2.clone().month() === moment().month()
+                            day2.month() === moment().month()
                             ? "s-dates s-today s-selected-date"
                             : "s-dates s-selected-date"
                           : day2.year() === moment().year() &&
                             day2.date() === moment().date() &&
-                            day2.clone().month() === moment().month()
+                            day2.month() === moment().month()
                           ? "s-dates s-today"
                           : "s-dates"
                       }
@@ -131,11 +127,11 @@ const Calendar = () => {
             </Box>
           </Paper>
           <CardContent>
-            <Tasks tasks={tasks} setTasks={setTasks} />
+            <Projects projects={projects} setProjects={setProjects} />
           </CardContent>
         </Card>
       </div>
     </ThemeProvider>
   );
 };
-export default Calendar;
+export default ProjectMain;

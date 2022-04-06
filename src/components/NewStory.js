@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import {
   Box,
@@ -10,6 +10,14 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 
 import theme from "../theme";
+function uuidv4() {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+}
 const NewStory = ({ newStory }) => {
   const initialState = {
     id: "",
@@ -22,8 +30,7 @@ const NewStory = ({ newStory }) => {
   const [state, setState] = useReducer(reducer, initialState);
 
   const handleStory = () => {
-    setState({ id: Math.random() });
-
+    setState({ id: uuidv4() });
     newStory(state);
   };
   return (
@@ -41,7 +48,7 @@ const NewStory = ({ newStory }) => {
             label="Portion"
             value={state.portion}
             onChange={(e) =>
-              setState({ id: Math.random(), portion: e.target.value })
+              setState({ id: uuidv4(), portion: e.target.value })
             }
           />
         </Box>

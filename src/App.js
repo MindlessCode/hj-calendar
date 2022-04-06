@@ -1,7 +1,8 @@
 import React from "react";
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Calendar from "./components/Calendar.js";
+import ProjectMain from "./components/ProjectMain.js";
 import About from "./components/About.js";
 import Home from "./components/Home.js";
 import "./style.css";
@@ -9,6 +10,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { AppBar } from "@mui/material";
 
 import theme from "./theme";
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -35,7 +37,7 @@ const App = () => {
               </li>
             </ul>
           </nav>
-          <Route path="/Projects" component={Calendar} />
+          <Route path="/Projects" component={ProjectMain} />
           <Route path="/About" component={About} />
           <Route path="/" exact component={Home} />
         </Router>

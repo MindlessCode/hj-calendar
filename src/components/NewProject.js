@@ -1,4 +1,10 @@
-import React, { useState, useReducer } from "react";
+import React, {
+  useState,
+  useEffect,
+  useReducer,
+  useRef,
+  useCallback,
+} from "react";
 import moment from "moment";
 import { ThemeProvider } from "@mui/material/styles";
 import {
@@ -12,25 +18,77 @@ import {
   CardActions,
   CardContent,
 } from "@mui/material";
-
 import { DataGrid } from "@mui/x-data-grid";
-import AddIcon from "@mui/icons-material/Add";
+
 import NewStory from "./NewStory.js";
-import "./Task.scss";
+
+import AddIcon from "@mui/icons-material/Add";
+import "./project.scss";
 import theme from "../theme";
 
-const NewTask = ({ onAdd }) => {
+function useOnClickOutside(ref, handler) {
+  useEffect(() => {
+    const listener = (event) => {
+      if (
+        ref.current.contains(event.target) ||
+        (event.target.getAttribute("class") !== null &&
+          (event.target
+            .getAttribute("class")
+            .toString()
+            .includes("MuiSelect-select") ||
+            event.target
+              .getAttribute("class")
+              .toString()
+              .includes("MuiBackdrop-root") ||
+            event.target
+              .getAttribute("class")
+              .toString()
+              .includes("MuiMenuItem") ||
+            event.target
+              .getAttribute("class")
+              .toString()
+              .includes("MuiButton") ||
+            event.target
+              .getAttribute("class")
+              .toString()
+              .includes("MuiModal") ||
+            event.target.getAttribute("class").toString().includes("MuiList") ||
+            (event.target.getAttribute("d") !== null &&
+              event.target.getAttribute("d").toString().includes("M19")) ||
+            event.target
+              .getAttribute("class")
+              .toString()
+              .includes("MuiSvgIcon-root")))
+      ) {
+        return;
+      }
+      handler(event);
+    };
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, handler]);
+}
+const NewProject = (props) => {
+  const divRef = useRef();
+  const handler = useCallback(() => props.onClickOutside(), [props]);
+  useOnClickOutside(divRef, handler);
   const initialState = {
     name: "",
     description: "",
-    startYear: moment().clone().year(),
+    startYear: moment().format("YYYY"),
     startMonth: moment().format("MM"),
     startDay: moment().format("DD"),
     storyPointHours: 0,
     stories: [],
   };
+
   const reducer = (state, newState) => ({ ...state, ...newState });
   const [state, setState] = useReducer(reducer, initialState);
+
   const columns = [
     {
       field: "portion",
@@ -140,7 +198,7 @@ const NewTask = ({ onAdd }) => {
   };
 
   const onAddStory = () => {
-    onAdd({
+    props.onAdd({
       name: state.name,
       description: state.description,
       startDate:
@@ -149,10 +207,9 @@ const NewTask = ({ onAdd }) => {
       stories: state.stories,
     });
   };
-
   return (
     <ThemeProvider theme={theme}>
-      <Card>
+      <Card className="new-project" ref={divRef}>
         <CardContent
           component="form"
           style={{
@@ -277,6 +334,7 @@ const NewTask = ({ onAdd }) => {
                     disableColumnMenu={true}
                     rows={state.stories}
                     columns={columns}
+                    getRowId={(r) => r.id}
                     experimentalFeatures={{ newEditingApi: true }}
                   />
                 </div>
@@ -291,7 +349,7 @@ const NewTask = ({ onAdd }) => {
               variant="outlined"
               color="primary"
               disableRipple
-              onClick={onAddStory}
+              onClick={(e) => onAddStory()}
             >
               CREATE PROJECT
             </Button>
@@ -301,4 +359,4 @@ const NewTask = ({ onAdd }) => {
     </ThemeProvider>
   );
 };
-export default NewTask;
+export default NewProject;

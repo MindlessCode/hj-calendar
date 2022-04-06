@@ -35,7 +35,6 @@ i:hover {
   font-size: 15px;
 }
 .s-dates {
-  overflow: hidden;
   height: 5em;
   width: 5em;
   user-select: none;
